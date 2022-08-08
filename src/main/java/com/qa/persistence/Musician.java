@@ -1,5 +1,6 @@
 package com.qa.persistence;
 
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -8,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import javax.persistence.Table;
 import javax.persistence.ManyToMany;
 
@@ -30,6 +32,7 @@ public class Musician {
 	@Column(nullable=false)
 	private String surname;
 	
+
 	@Column(nullable=false)
 	private String forename;
 	
@@ -43,4 +46,3 @@ public class Musician {
 	private Set<Band> bands = new HashSet<>();
 	
 }
-

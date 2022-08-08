@@ -1,5 +1,6 @@
 package com.qa.persistence;
 
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -8,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -26,12 +28,14 @@ public class Record {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	@Column(name="record_id")
 	private int recordId;
 	
 	@Column(nullable=false)
 	private String title;
 	
+
 	@ManyToOne
 	@JoinColumn(name="band_id")
 	@Column(nullable=false)
@@ -46,6 +50,7 @@ public class Record {
 	@Column
 	private String linkToCover;
 	
+
 	@ManyToMany(mappedBy = "record_id")
     private Set<Musician> musicians = new HashSet<>();
 	
