@@ -8,8 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,29 +19,28 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Band {
+@Table(name= "musicians")
+public class Musician {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="band_id")
-	private int bandId;
+	@Column(name = "musician_id")
+	private int musicianId;
 	
 	@Column(nullable=false)
-	private String name;
+	private String surname;
 	
-	@Column
-	private String genre;
+	@Column(nullable=false)
+	private String forename;
 	
-	@Column
-	private int yearFormed;
+	@Column(nullable=false)
+	private String instrument;
 	
-	@Column
-	private boolean active;
+	@ManyToMany(mappedBy = "musican_id")
+    private Set<Record> recordings = new HashSet<>();
 	
-	@OneToMany(mappedBy = "band_id")
-	private Set<Record> records = new HashSet<>();
+	@ManyToMany(mappedBy = "musician_id")
+	private Set<Band> bands = new HashSet<>();
 	
-	@ManyToMany(mappedBy = "band_id")
-	private Set<Musician> musicians = new HashSet<>();	
-
 }
+
