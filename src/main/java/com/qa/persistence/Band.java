@@ -9,9 +9,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.JoinColumn;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,12 +23,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "bands")
 public class Band {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="band_id")
-	private int bandId;
+	private Long bandId;
 
 	
 	@Column(nullable=false)
@@ -42,10 +45,15 @@ public class Band {
 	private boolean active;
 	
 
-	@OneToMany(mappedBy = "band_id")
+	@OneToMany(mappedBy = "bandId", targetEntity = Record.class)
 	private Set<Record> records = new HashSet<>();
 	
-	@ManyToMany(mappedBy = "band_id")
+	
+	@JoinTable(
+			  name = "bandmembers", 
+			  joinColumns = @JoinColumn(name = "band_id"), 
+			  inverseJoinColumns = @JoinColumn(name = "musician_id"))
+	@ManyToMany
 	private Set<Musician> musicians = new HashSet<>();	
 
 
