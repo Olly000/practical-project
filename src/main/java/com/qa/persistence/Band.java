@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +14,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.JoinColumn;
 
 import lombok.AllArgsConstructor;
@@ -44,16 +48,16 @@ public class Band {
 	@Column
 	private boolean active;
 	
-
-	@OneToMany(mappedBy = "bandId", targetEntity = Recording.class)
+//targetEntity = Recording.class
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "band")
 	private Set<Recording> recordings = new HashSet<>();
 	
-	
+	@ManyToMany
 	@JoinTable(
 			  name = "bandmembers", 
 			  joinColumns = @JoinColumn(name = "band_id"), 
 			  inverseJoinColumns = @JoinColumn(name = "musician_id"))
-	@ManyToMany
 	private Set<Musician> musicians = new HashSet<>();	
 
 

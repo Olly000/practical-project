@@ -11,7 +11,7 @@ public class RecordingDTO {
 
 	private String title;
 	
-	private int bandId;
+	private Band band;
 	
 	private String label;
 	
@@ -21,10 +21,12 @@ public class RecordingDTO {
 
 	public RecordingDTO(Recording recording) {
 		this.title = recording.getTitle();
-		this.bandId = recording.getBandId(); // TODO: Get from name input
+		this.band = recording.getBand(); // TODO: Get from name input
 		this.label = recording.getLabel();
 		this.releaseYear = recording.getReleaseYear();
 		this.linkToCover = recording.getLinkToCover();
 	}
+	
+	
 
 }

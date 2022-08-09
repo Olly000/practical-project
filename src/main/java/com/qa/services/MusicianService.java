@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +16,10 @@ import com.qa.repositories.MusicianRepository;
 @Service
 public class MusicianService {
 	
-private MusicianRepository repo;
-
-private ModelMapper mapper;
+	@Autowired
+	private MusicianRepository repo;
+	
+	private ModelMapper mapper;
 
 	public MusicianService(MusicianRepository repo, ModelMapper mapper) {
 		super();

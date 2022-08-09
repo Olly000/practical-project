@@ -5,7 +5,7 @@ INSERT INTO bands(name, genre, year_formed, active) VALUES
 ('Isotope 217', 'jazz', 1997, 0),
 ('The Breeders', 'indie-rock', 1989, 1);
 
-INSERT INTO recordings(title, band_id, label, release_year) VALUES
+INSERT INTO recordings(title, band, label, release_year) VALUES
 ('Millions now living will never die', 1, 'Thrill Jockey', 1996),
 ('TNT', 1, 'Thrill Jockey', 1999),
 ('One Bedroom', 2, 'Thrill Jockey', 2003),
@@ -15,4 +15,5 @@ INSERT INTO recordings(title, band_id, label, release_year) VALUES
 INSERT INTO musicians(surname, forename, instrument) VALUES
 ('McIntyre', 'John', 'drums'),
 ('Pajo', 'David', 'guitar'),
-('Prekop', 'Sam', 'guitar');
+('Prekop', 'Sam', 'guitar'),
+('Deal', 'Kim', 'vocals');

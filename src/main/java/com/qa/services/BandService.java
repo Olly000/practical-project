@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +16,10 @@ import com.qa.repositories.BandRepository;
 @Service
 public class BandService {
 	
-private BandRepository repo;
-
-private ModelMapper mapper;
+	@Autowired
+	private BandRepository repo;
+	
+	private ModelMapper mapper;
 
 	public BandService(BandRepository repo, ModelMapper mapper) {
 		super();

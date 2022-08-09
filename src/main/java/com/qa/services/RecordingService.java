@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +18,10 @@ import com.qa.repositories.RecordingRepository;
 @Service
 public class RecordingService {
 	
-private RecordingRepository repo;
-
-private ModelMapper mapper;
+	@Autowired
+	private RecordingRepository repo;
+	
+	private ModelMapper mapper;
 
 	public RecordingService(RecordingRepository repo, ModelMapper mapper) {
 		super();
@@ -38,7 +40,7 @@ private ModelMapper mapper;
 	}
 	
 	// read
-	public List<RecordingDTO> getAllrecordings() {
+	public List<RecordingDTO> getAllRecordings() {
 		return this.repo.findAll().stream().map(this::mapToDTO).collect(Collectors.toList());
 	}
 	
@@ -47,11 +49,11 @@ private ModelMapper mapper;
 	}
 	
 	// update
-	public RecordingDTO updaterecording(Long id, Recording recording) throws NotFoundException {
+	public RecordingDTO updateRecording(Long id, Recording recording) throws NotFoundException {
 		Recording existingRecording = this.repo.findById(id).orElseThrow(NotFoundException::new);
 		if(existingRecording != null) {
 			existingRecording.setTitle(recording.getTitle());
-			existingRecording.setBandId(recording.getBandId());
+			existingRecording.setBand(recording.getBand());
 			existingRecording.setLabel(recording.getLabel());
 			existingRecording.setReleaseYear(recording.getReleaseYear());
 			existingRecording.setLinkToCover(recording.getLinkToCover());

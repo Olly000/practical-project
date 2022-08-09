@@ -4,6 +4,7 @@ package com.qa.persistence;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,10 +36,9 @@ public class Recording {
 	@Column(nullable=false)
 	private String title;
 	
-
-	@ManyToOne(targetEntity = Band.class)
-	@JoinColumn(name="band_id")
-	private int bandId;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "band_id", referencedColumnName = "band_id")
+	private Band band;
 	
 	@Column
 	private String label;
