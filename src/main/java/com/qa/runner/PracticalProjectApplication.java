@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @EnableJpaRepositories("com.qa.repositories")
 @EntityScan("com.qa.persistence")
+@ComponentScan("com.qa.services")
+@ComponentScan("com.qa.controllers")
 @ComponentScan("com.qa.exceptions")
 @SpringBootApplication
 public class PracticalProjectApplication {

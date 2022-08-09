@@ -38,9 +38,15 @@ public class Musician {
 	@Column(nullable=false)
 	private String instrument;
 	
+	public Musician(String forename, String surname, String instrument) {
+		this.forename = forename;
+		this.surname = surname;
+		this.instrument = instrument;
+	}
+	
 	
 	@ManyToMany(mappedBy = "players")
-    private Set<Record> recordings = new HashSet<>();
+    private Set<Recording> recordings = new HashSet<>();
 	
 	@ManyToMany(mappedBy = "musicians")
 	private Set<Band> bands = new HashSet<>();

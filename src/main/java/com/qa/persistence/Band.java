@@ -45,8 +45,8 @@ public class Band {
 	private boolean active;
 	
 
-	@OneToMany(mappedBy = "bandId", targetEntity = Record.class)
-	private Set<Record> records = new HashSet<>();
+	@OneToMany(mappedBy = "bandId", targetEntity = Recording.class)
+	private Set<Recording> recordings = new HashSet<>();
 	
 	
 	@JoinTable(
