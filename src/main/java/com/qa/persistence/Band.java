@@ -6,12 +6,18 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.JoinColumn;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,16 +27,25 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "bands")
 public class Band {
 	
+	public Band(String bandName, String genre, int yearFormed, boolean active) {
+		this.bandName = bandName;
+		this.genre = genre;
+		this.yearFormed = yearFormed;
+		this.active = active;
+	}
+
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="band_id")
-	private int bandId;
+	private Long bandId;
 
 	
 	@Column(nullable=false)
-	private String name;
+	private String bandName;
 	
 	@Column
 	private String genre;
@@ -41,11 +56,17 @@ public class Band {
 	@Column
 	private boolean active;
 	
-
-	@OneToMany(mappedBy = "band_id")
-	private Set<Record> records = new HashSet<>();
+//targetEntity = Recording.class
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "band")
+	private Set<Recording> recordings = new HashSet<>();
 	
-	@ManyToMany(mappedBy = "band_id")
+	
+	@ManyToMany
+	@JoinTable(
+			  name = "bandmembers", 
+			  joinColumns = @JoinColumn(name = "band_id"), 
+			  inverseJoinColumns = @JoinColumn(name = "musician_id"))
 	private Set<Musician> musicians = new HashSet<>();	
 
 

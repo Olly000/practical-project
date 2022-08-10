@@ -11,6 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.ManyToMany;
 
 import lombok.AllArgsConstructor;
@@ -21,28 +24,36 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name= "musicians")
+@Table(name = "musicians")
 public class Musician {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "musician_id")
-	private int musicianId;
+	private Long musicianId;
 	
 	@Column(nullable=false)
 	private String surname;
 	
-
 	@Column(nullable=false)
 	private String forename;
 	
 	@Column(nullable=false)
 	private String instrument;
 	
-	@ManyToMany(mappedBy = "musican_id")
-    private Set<Record> recordings = new HashSet<>();
+	public Musician(String forename, String surname, String instrument) {
+		this.forename = forename;
+		this.surname = surname;
+		this.instrument = instrument;
+	}
 	
-	@ManyToMany(mappedBy = "musician_id")
+	@JsonIgnore
+	@ManyToMany(mappedBy = "players")
+    private Set<Recording> recordings = new HashSet<>();
+	
+	@JsonIgnore
+	@ManyToMany(mappedBy = "musicians")
 	private Set<Band> bands = new HashSet<>();
+	
 	
 }
