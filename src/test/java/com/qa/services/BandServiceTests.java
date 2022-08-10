@@ -16,8 +16,6 @@ import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import com.qa.exceptions.NoDeleteException;
 import com.qa.persistence.Band;
 import com.qa.persistence.BandDTO;
-import com.qa.persistence.Musician;
-import com.qa.persistence.MusicianDTO;
 import com.qa.repositories.BandRepository;
 import com.qa.runner.PracticalProjectApplication;
 

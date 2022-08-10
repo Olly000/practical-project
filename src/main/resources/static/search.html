@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styling.css">
+    <title>search-form</title>
+</head>
+<body>
+    <fieldset name="search-options" class="options"><legend>Search Database</legend>
+        <ul>
+            <li class="list-item">
+                <select id="entity-choice" name="entity" required>
+                    <option value="Band">Band</option>
+                    <option value="Musician">Musician</option>
+                    <option value="Recording">Recording</option>
+                </select>
+            </li>
+            <li class="list-item">
+                <label for="name">Name/Title:  </label><input type="text" name="name" >
+            </li>
+            <li class="list-item">
+                <input type="submit" label="submit">
+            </li>
+            <li class="list-item">
+                <label for="all">  or  </label><input type="button" class="bttn" value="Show All" id="all">
+            </li>
+        </ul>
+    </fieldset>
+    <script src="./ppa.js"></script>
+    <script src="./searchBox.js"></script>
+</body>
+</html>
