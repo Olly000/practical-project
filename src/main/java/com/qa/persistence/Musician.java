@@ -11,6 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.ManyToMany;
 
 import lombok.AllArgsConstructor;
@@ -44,10 +47,11 @@ public class Musician {
 		this.instrument = instrument;
 	}
 	
-	
+	@JsonIgnore
 	@ManyToMany(mappedBy = "players")
     private Set<Recording> recordings = new HashSet<>();
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy = "musicians")
 	private Set<Band> bands = new HashSet<>();
 	

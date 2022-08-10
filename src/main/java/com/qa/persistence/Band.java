@@ -53,6 +53,7 @@ public class Band {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "band")
 	private Set<Recording> recordings = new HashSet<>();
 	
+	
 	@ManyToMany
 	@JoinTable(
 			  name = "bandmembers", 
