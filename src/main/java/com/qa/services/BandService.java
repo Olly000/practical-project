@@ -50,7 +50,7 @@ public class BandService {
 	public BandDTO updateBand(Long id, Band band) throws NotFoundException {
 		Band existingBand = this.repo.findById(id).orElseThrow(NotFoundException::new);
 		if(existingBand != null) {
-			existingBand.setName(band.getName());
+			existingBand.setBandName(band.getBandName());
 			existingBand.setGenre(band.getGenre());
 			existingBand.setYearFormed(band.getYearFormed());
 		} else {

@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
-import com.qa.services.MusicianService;
+
 import com.qa.exceptions.NoDeleteException;
 import com.qa.persistence.Musician;
 import com.qa.persistence.MusicianDTO;
@@ -43,7 +43,7 @@ public class MusicianServiceTests {
 	@Test
 	public void testGetOneMusician() throws NotFoundException {
 		Long id = 1L;
-		Optional<Musician> musician = Optional.of(new Musician());
+		Optional<Musician> musician = Optional.of(new Musician("Britt", "Walford", "drums"));
 		
 		Mockito.when(repo.findById(id)).thenReturn(musician);
 		MusicianDTO musicianDTO = new MusicianDTO(musician.get());
@@ -63,13 +63,34 @@ public class MusicianServiceTests {
 		
 		Mockito.when(repo.findAll()).thenReturn(current);
 		
+		List<MusicianDTO> currentDTO = new ArrayList<>();
+		MusicianDTO musicianDTO1 = new MusicianDTO("Britt", "Walford", "drums");
+		MusicianDTO musicianDTO2 = new MusicianDTO("Kim", "Deal", "vocals");
+		currentDTO.add(musicianDTO1);
+		currentDTO.add(musicianDTO2);
 		
+		Assertions.assertEquals(currentDTO, service.getAllMusicians());
+		
+		Mockito.verify(this.repo, Mockito.times(1)).findAll();
 	}
 	
-//	@Test
-//	public void testUpdateMusician() {
-//		
-//	}
+	@Test
+	public void testUpdateMusician() throws NotFoundException {
+		Musician newMusician = new Musician("Britt", "Walford", "drums");
+		Optional<Musician> storedMusician = Optional.of(new Musician("Doug", "Walford", "drums"));
+		Long id = 1L;
+		
+		Mockito.when(repo.findById(id)).thenReturn(storedMusician);
+		Mockito.when(repo.save(newMusician)).thenReturn(newMusician);
+		
+		MusicianDTO newMusicianDTO = service.mapToDTO(newMusician);
+		
+		Assertions.assertEquals(newMusicianDTO, service.updateMusician(id, newMusician));
+		
+		Mockito.verify(this.repo, Mockito.times(1)).findById(id);
+		Mockito.verify(this.repo, Mockito.times(1)).save(newMusician);
+		
+	}
 	
 	@Test
 	public void testDeleteMusician() throws NoDeleteException {

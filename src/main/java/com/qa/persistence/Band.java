@@ -30,6 +30,14 @@ import lombok.NoArgsConstructor;
 @Table(name = "bands")
 public class Band {
 	
+	public Band(String bandName, String genre, int yearFormed, boolean active) {
+		this.bandName = bandName;
+		this.genre = genre;
+		this.yearFormed = yearFormed;
+		this.active = active;
+	}
+
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="band_id")
@@ -37,7 +45,7 @@ public class Band {
 
 	
 	@Column(nullable=false)
-	private String name;
+	private String bandName;
 	
 	@Column
 	private String genre;

@@ -28,6 +28,13 @@ import lombok.NoArgsConstructor;
 @Table(name="recordings")
 public class Recording {
 	
+	public Recording(String title, Band band, String label, int releaseYear) {
+		this.title = title;
+		this.band = band;
+		this.label = label;
+		this.releaseYear = releaseYear;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="recording_id")
@@ -45,10 +52,6 @@ public class Recording {
 	
 	@Column
 	private int releaseYear;
-	
-	@Column
-	private String linkToCover;
-	
 	
 	@JoinTable(
 			  name = "played_on", 

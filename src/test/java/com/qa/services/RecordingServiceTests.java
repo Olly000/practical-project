@@ -13,6 +13,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 
 import com.qa.exceptions.NoDeleteException;
+import com.qa.persistence.Band;
 import com.qa.persistence.Recording;
 import com.qa.persistence.RecordingDTO;
 import com.qa.repositories.RecordingRepository;
@@ -55,21 +56,44 @@ public class RecordingServiceTests {
 	
 	@Test
 	public void testGetAllRecordings() {
+		Band band1 = new Band("Throwing Muses", "indie", 1984, true);
+		Band band2 = new Band("Mogwai", "post-rock", 1995, true);
 		List<Recording> current = new ArrayList<>();
-		Recording recording1 = new Recording();
-		Recording recording2 = new Recording();
+		Recording recording1 = new Recording("University", band1, "4AD", 1990);
+		Recording recording2 = new Recording("Young Team", band2, "Chemikal", 1997);
 		current.add(recording1);
 		current.add(recording2);
 		
 		Mockito.when(repo.findAll()).thenReturn(current);
 		
+		List<RecordingDTO> currentDTO = new ArrayList<>();
+		RecordingDTO recordingDTO1 = new RecordingDTO("University", band1, "4AD", 1990);
+		RecordingDTO recordingDTO2 = new RecordingDTO("Young Team", band2, "Chemikal", 1997);
+		currentDTO.add(recordingDTO1);
+		currentDTO.add(recordingDTO2);
 		
+		Assertions.assertEquals(currentDTO, service.getAllRecordings());
+		
+		Mockito.verify(this.repo, Mockito.times(1)).findAll();
 	}
 	
-//	@Test
-//	public void testUpdateRecording() {
-//		
-//	}
+	@Test
+	public void testUpdateRecording() throws NotFoundException {
+		Band band = new Band("Mogwai", "post-rock", 1995, true);
+		Recording newRecording = new Recording("Young Team", band, "Chemikal", 1997);
+		Optional<Recording> storedRecording = Optional.of(new Recording("Young Team", band, "Chemikal Underground", 1997));
+		Long id = 1L;
+		
+		Mockito.when(repo.findById(id)).thenReturn(storedRecording);
+		Mockito.when(repo.save(newRecording)).thenReturn(newRecording);
+		
+		RecordingDTO newRecordingDTO = service.mapToDTO(newRecording);
+		
+		Assertions.assertEquals(newRecordingDTO, service.updateRecording(id, newRecording));
+		
+		Mockito.verify(this.repo, Mockito.times(1)).findById(id);
+		Mockito.verify(this.repo, Mockito.times(1)).save(newRecording);
+	}
 	
 	@Test
 	public void testDeleteRecording() throws NoDeleteException {

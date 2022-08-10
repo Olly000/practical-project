@@ -56,9 +56,6 @@ public class RecordingService {
 			existingRecording.setBand(recording.getBand());
 			existingRecording.setLabel(recording.getLabel());
 			existingRecording.setReleaseYear(recording.getReleaseYear());
-			existingRecording.setLinkToCover(recording.getLinkToCover());
-			
-			
 		} else {
 			return this.addRecording(recording);
 		}

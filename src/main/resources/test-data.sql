@@ -1,4 +1,4 @@
-INSERT INTO bands(name, genre, year_formed, active) VALUES
+INSERT INTO bands(band_name, genre, year_formed, active) VALUES
 ('Tortoise', 'post-rock', 1990, 1),
 ('The Sea and Cake', 'jazz-rock', 1994, 1),
 ('Slint', 'indie-rock',  1986, 0),

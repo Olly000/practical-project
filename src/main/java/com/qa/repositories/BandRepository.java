@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 @Repository
 public interface BandRepository extends JpaRepository<Band, Long> {
 
-	public Band findByName(String name);
+	public Band findByBandName(String BandName);
 
 
 }

@@ -18,7 +18,7 @@ public class BandDTO {
 	private boolean active;
 	
 	public BandDTO(Band band) {
-		this.name = band.getName();
+		this.name = band.getBandName();
 		this.genre = band.getGenre();
 		this.yearFormed = band.getYearFormed();
 		this.active = band.isActive();

@@ -16,6 +16,8 @@ import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import com.qa.exceptions.NoDeleteException;
 import com.qa.persistence.Band;
 import com.qa.persistence.BandDTO;
+import com.qa.persistence.Musician;
+import com.qa.persistence.MusicianDTO;
 import com.qa.repositories.BandRepository;
 import com.qa.runner.PracticalProjectApplication;
 
@@ -44,12 +46,12 @@ public class BandServiceTests {
 	@Test
 	public void testGetOneBand() throws NotFoundException {
 		Long id = 1L;
-		Optional<Band> Band = Optional.of(new Band());
+		Optional<Band> band = Optional.of(new Band());
 		
-		Mockito.when(repo.findById(id)).thenReturn(Band);
-		BandDTO BandDTO = new BandDTO(Band.get());
+		Mockito.when(repo.findById(id)).thenReturn(band);
+		BandDTO bandDTO = new BandDTO(band.get());
 		
-		Assertions.assertEquals(service.getOneBand(id), BandDTO);
+		Assertions.assertEquals(service.getOneBand(id), bandDTO);
 		
 		Mockito.verify(this.repo, Mockito.times(1)).findById(id);
 	}
@@ -57,20 +59,41 @@ public class BandServiceTests {
 	@Test
 	public void testGetAllBands() {
 		List<Band> current = new ArrayList<>();
-		Band band1 = new Band();
-		Band band2 = new Band();
+		Band band1 = new Band("Throwing Muses", "indie", 1984, true);
+		Band band2 = new Band("Mogwai", "post-rock", 1995, true);
 		current.add(band1);
 		current.add(band2);
 		
 		Mockito.when(repo.findAll()).thenReturn(current);
 		
+		List<BandDTO> currentDTO = new ArrayList<>();
+		BandDTO bandDTO1 = new BandDTO("Throwing Muses", "indie", 1984, true);
+		BandDTO bandDTO2 = new BandDTO("Mogwai", "post-rock", 1995, true);
+		currentDTO.add(bandDTO1);
+		currentDTO.add(bandDTO2);
 		
+		
+		Assertions.assertEquals(currentDTO, service.getAllBands());
+		
+		Mockito.verify(this.repo, Mockito.times(1)).findAll();
 	}
 	
-//	@Test
-//	public void testUpdateBand() {
-//		
-//	}
+	@Test
+	public void testUpdateBand() throws NotFoundException {
+		Band newBand = new Band("Throwing Muses", "indie", 1984, true);
+		Optional<Band> storedBand = Optional.of(new Band("Throwing Muses", "indie", 1990, true));
+		Long id = 1L;
+		
+		Mockito.when(repo.findById(id)).thenReturn(storedBand);
+		Mockito.when(repo.save(newBand)).thenReturn(newBand);
+		
+		BandDTO newBandDTO = service.mapToDTO(newBand);
+		
+		Assertions.assertEquals(newBandDTO, service.updateBand(id, newBand));
+		
+		Mockito.verify(this.repo, Mockito.times(1)).findById(id);
+		Mockito.verify(this.repo, Mockito.times(1)).save(newBand);
+	}
 	
 	@Test
 	public void testDeleteBand() throws NoDeleteException {

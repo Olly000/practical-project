@@ -16,15 +16,12 @@ public class RecordingDTO {
 	private String label;
 	
 	private int releaseYear;
-	
-	private String linkToCover;
 
 	public RecordingDTO(Recording recording) {
 		this.title = recording.getTitle();
 		this.band = recording.getBand(); // TODO: Get from name input
 		this.label = recording.getLabel();
 		this.releaseYear = recording.getReleaseYear();
-		this.linkToCover = recording.getLinkToCover();
 	}
 	
 	
