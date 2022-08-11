@@ -54,17 +54,17 @@ public class Band {
 	private int yearFormed;
 	
 //targetEntity = Recording.class
-	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "band", cascade = CascadeType.ALL)
-	private Set<Recording> recordings = new HashSet<>();
+//	@JsonIgnore
+//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "band", cascade = CascadeType.ALL)
+//	private Set<Recording> recordings = new HashSet<>();
 	
-	
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(
-			  name = "bandmembers", 
-			  joinColumns = @JoinColumn(name = "band_id"), 
-			  inverseJoinColumns = @JoinColumn(name = "musician_id"))
-	private Set<Musician> musicians = new HashSet<>();	
+//	@JsonIgnore
+//	@ManyToMany
+//	@JoinTable(
+//			  name = "bandmembers", 
+//			  joinColumns = @JoinColumn(name = "band_id"), 
+//			  inverseJoinColumns = @JoinColumn(name = "musician_id"))
+//	private Set<Musician> musicians = new HashSet<>();	
 
 
 }

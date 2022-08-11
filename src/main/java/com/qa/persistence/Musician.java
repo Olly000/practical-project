@@ -10,7 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -44,13 +45,22 @@ public class Musician {
 		this.instrument = instrument;
 	}
 	
-	@JsonIgnore
-	@ManyToMany(mappedBy = "players")
+	//@JsonIgnore
+	@ManyToMany
+	@JoinTable(name = "recorded", joinColumns=
+	@JoinColumn(name="musician_id"),
+	inverseJoinColumns = @JoinColumn(name = "recording_id"))
     private Set<Recording> recordings = new HashSet<>();
 	
-	@JsonIgnore
-	@ManyToMany(mappedBy = "musicians", cascade = CascadeType.ALL)
-	private Set<Band> bands = new HashSet<>();
+//	@JsonIgnore
+//	@ManyToMany(mappedBy = "bandId")
+//	private Set<Band> playsIn = new HashSet<>();
+	
+	@ManyToMany
+	@JoinTable(name = "plays_in", joinColumns=
+	@JoinColumn(name="musician_id"),
+	inverseJoinColumns = @JoinColumn(name = "band_id"))
+	private Set<Band> memberOf = new HashSet<>();
 	
 	
 }

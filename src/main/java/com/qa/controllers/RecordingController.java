@@ -34,6 +34,7 @@ public class RecordingController {
 	
 	@PostMapping("/addRecording")
 	public RecordingDTO add(@RequestBody Recording recording) {
+		
 		return service.addRecording(recording);
 	}
 	
