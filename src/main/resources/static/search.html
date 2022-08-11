@@ -8,13 +8,32 @@
     <title>search-form</title>
 </head>
 <body>
+    <header class="heading">
+        <h1> Welcome to Musiconnect</h1>
+        <br>
+    </header>
+    <div class="subtitle">
+        <p>This site lets you find out who played on what recordings - it can be searched by musician,
+            band or recording.  You can also add, edit and remove musicians, bands or recordings from
+            the database.
+        </p>
+    </div>
+    <section class="heading">
+        <h2>What would you like to do?</h2>
+        <br>
+    </section>
+    <!--goes to search/edit/delete pages use radio for entity type.  Don't forget to put a back button
+    on these pages, which will output success message (as alert?) then wait for another input-->
+        <section id="choice-box"> 
+            <input type="button" id="search-for" class="bttn" value="return to menu" onclick="location.href='./index.html';">
+        </section>
     <fieldset name="search-options" class="options"><legend>Search Database</legend>
         <ul>
             <li class="list-item">
                 <select id="entity-choice" name="entity" required>
-                    <option value="band" selected>Band</option>
-                    <option value="musician">Musician</option>
-                    <option value="recording">Recording</option>
+                    <option value="Band" selected>Band</option>
+                    <option value="Musician">Musician</option>
+                    <option value="Recording">Recording</option>
                 </select>
             </li>
             <li class="list-item">
@@ -29,7 +48,7 @@
         </ul>
     </fieldset>
     <section id="response-body"></section>
-    <script src="./ppa.js"></script>
+    <script src="./index.js"></script>
     <script src="./searchBox.js"></script>
 </body>
 </html>

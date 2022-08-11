@@ -17,3 +17,9 @@ INSERT INTO musicians(full_name, instrument) VALUES
 ('David Pajo', 'guitar'),
 ('Sam Prekop', 'guitar'),
 ('Kim Deal', 'vocals');
+
+INSERT INTO played_on(musician_id, recording_id) VALUES
+(1, 1),
+(2, 1),
+(2, 2),
+(2, 4);

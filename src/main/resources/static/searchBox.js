@@ -2,11 +2,11 @@
 function buildEndpoint(input) {
     let entityType = document.getElementById('entity-choice').value;
     let encode = input.replace(/' '/, '%20');
-    if(entityType == 'band') {
+    if(entityType == 'Band') {
         return `/getOneBand?bandName=${encode}`;
-    }else if(entityType == 'musician') {
+    }else if(entityType == 'Musician') {
         return `/getOneMusician?fullName=${encode}`;
-    } else if(entityType == 'recording') {
+    } else if(entityType == 'Recording') {
         return `/getOneRecording?title=${encode}`;
     } else {
         return "shits not working";

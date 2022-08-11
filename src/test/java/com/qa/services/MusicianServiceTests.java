@@ -1,6 +1,7 @@
 package com.qa.services;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,8 +14,10 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 
 import com.qa.exceptions.NoDeleteException;
+import com.qa.persistence.Band;
 import com.qa.persistence.Musician;
 import com.qa.persistence.MusicianDTO;
+import com.qa.persistence.Recording;
 import com.qa.repositories.MusicianRepository;
 import com.qa.runner.PracticalProjectApplication;
 
@@ -64,8 +67,8 @@ public class MusicianServiceTests {
 		Mockito.when(repo.findAll()).thenReturn(current);
 		
 		List<MusicianDTO> currentDTO = new ArrayList<>();
-		MusicianDTO musicianDTO1 = new MusicianDTO("Britt Walford", "drums");
-		MusicianDTO musicianDTO2 = new MusicianDTO("Kim Deal", "vocals");
+		MusicianDTO musicianDTO1 = new MusicianDTO("Britt Walford", "drums", Collections.<Recording>emptySet(), Collections.<Band>emptySet());
+		MusicianDTO musicianDTO2 = new MusicianDTO("Kim Deal", "vocals", Collections.<Recording>emptySet(), Collections.<Band>emptySet());
 		currentDTO.add(musicianDTO1);
 		currentDTO.add(musicianDTO2);
 		

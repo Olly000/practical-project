@@ -4,11 +4,11 @@
 //     document.getElementById('form-box').frame.contentWindow.document.body.scrollHeight + "vw";
 // }   
 
-function displaySearchForm() {
-    document.getElementById('form-box').setAttribute('src', './search.html');
-}
+// function displaySearchForm() {
+//     document.getElementById('form-box').setAttribute('src', './search.html');
+// }
 
-document.getElementById('search-for').addEventListener('click', displaySearchForm);
+// document.getElementById('search-for').addEventListener('click', displaySearchForm);
 
 
 

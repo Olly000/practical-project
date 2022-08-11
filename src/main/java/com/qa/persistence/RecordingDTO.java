@@ -1,5 +1,7 @@
 package com.qa.persistence;
 
+import java.util.Set;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,12 +18,16 @@ public class RecordingDTO {
 	private String label;
 	
 	private int releaseYear;
+	
+	private Set<Musician> players;
 
 	public RecordingDTO(Recording recording) {
 		this.title = recording.getTitle();
 		this.band = recording.getBand(); // TODO: Get from name input
 		this.label = recording.getLabel();
 		this.releaseYear = recording.getReleaseYear();
+		this.players = recording.getPlayers();
+		
 	}
 	
 	

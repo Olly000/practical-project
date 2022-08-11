@@ -1,6 +1,7 @@
 package com.qa.services;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +17,8 @@ import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import com.qa.exceptions.NoDeleteException;
 import com.qa.persistence.Band;
 import com.qa.persistence.BandDTO;
+import com.qa.persistence.Musician;
+import com.qa.persistence.Recording;
 import com.qa.repositories.BandRepository;
 import com.qa.runner.PracticalProjectApplication;
 
@@ -30,7 +33,7 @@ public class BandServiceTests {
 	
 	@Test
 	public void testCreate() {
-		Band Band = new Band();
+		Band Band = new Band("Throwing Muses", "indie", 1984);
 		
 		Mockito.when(repo.save(Band)).thenReturn(Band);
 		BandDTO BandDTO = new BandDTO(Band);
@@ -44,7 +47,7 @@ public class BandServiceTests {
 	@Test
 	public void testGetOneBand() throws NotFoundException {
 		Long id = 1L;
-		Optional<Band> band = Optional.of(new Band());
+		Optional<Band> band = Optional.of(new Band("Throwing Muses", "indie", 1984));
 		
 		Mockito.when(repo.findById(id)).thenReturn(band);
 		BandDTO bandDTO = new BandDTO(band.get());
@@ -65,8 +68,8 @@ public class BandServiceTests {
 		Mockito.when(repo.findAll()).thenReturn(current);
 		
 		List<BandDTO> currentDTO = new ArrayList<>();
-		BandDTO bandDTO1 = new BandDTO("Throwing Muses", "indie", 1984);
-		BandDTO bandDTO2 = new BandDTO("Mogwai", "post-rock", 1995);
+		BandDTO bandDTO1 = new BandDTO("Throwing Muses", "indie", 1984, Collections.<Recording>emptySet(), Collections.<Musician>emptySet());
+		BandDTO bandDTO2 = new BandDTO("Mogwai", "post-rock", 1995, Collections.<Recording>emptySet(), Collections.<Musician>emptySet());
 		currentDTO.add(bandDTO1);
 		currentDTO.add(bandDTO2);
 		
