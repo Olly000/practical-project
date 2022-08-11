@@ -43,7 +43,8 @@ public class MusicianController {
 	}
 	
 	@GetMapping("/getOneMusician")
-	public MusicianDTO getOne(@PathParam("id") Long id) throws NotFoundException {
+	public MusicianDTO getOne(@PathParam("fullName") String fullName) throws NotFoundException {
+		Long id = service.idFromName(fullName);
 		return service.getOneMusician(id);
 	}
 	

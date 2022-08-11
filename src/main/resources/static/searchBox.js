@@ -1,19 +1,45 @@
 
-async function getAll() {
+function buildEndpoint(input) {
     let entityType = document.getElementById('entity-choice').value;
-    fetch(`/getAll${entityType}s`)
-        .then(async response => {
-            let content = await response.json();
-            let output = JSON.stringify(content);
-            document.getElementById('response-body').append(output);
-        })
-        .catch(error => console.log(error));
+    let encode = input.replace(/' '/, '%20');
+    if(entityType == 'band') {
+        return `/getOneBand?bandName=${encode}`;
+    }else if(entityType == 'musician') {
+        return `/getOneMusician?fullName=${encode}`;
+    } else if(entityType == 'recording') {
+        return `/getOneRecording?title=${encode}`;
+    } else {
+        return "shits not working";
+    }
 }
 
-// async function getOne() {
+function getAll() {
+    let entityType = document.getElementById('entity-choice').value;
+    fetch(`/getAll${entityType}s`, {
+        method:"GET",
+        headers:{
+            "Content-Type":"application/json"
+        }
+        }).then(response => {
+            response.json().then(body => {
+            document.getElementById('response-body').append(JSON.stringify(body));
+            });    
+        }).catch(error => {console.log(error);
+            alert(`${error.message}`)});
+}
 
-// }
-
-let allBtn = document.getElementById('all');
-allBtn.addEventListener('click', getAll);
+function getOne(input) {
+    let endpoint = buildEndpoint(input);
+    fetch(endpoint, {
+        method:"GET",
+        headers:{
+            "Content-Type":"application/json"
+        }
+        }).then(response => {
+            response.json().then(body => {
+            document.getElementById('response-body').append(JSON.stringify(body));
+            });    
+        }).catch(error => {console.log(error);
+            alert(`${error.message}`)});
+}
 

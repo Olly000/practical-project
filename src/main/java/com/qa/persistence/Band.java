@@ -30,11 +30,10 @@ import lombok.NoArgsConstructor;
 @Table(name = "bands")
 public class Band {
 	
-	public Band(String bandName, String genre, int yearFormed, boolean active) {
+	public Band(String bandName, String genre, int yearFormed) {
 		this.bandName = bandName;
 		this.genre = genre;
 		this.yearFormed = yearFormed;
-		this.active = active;
 	}
 
 
@@ -52,9 +51,6 @@ public class Band {
 	
 	@Column
 	private int yearFormed;
-	
-	@Column
-	private boolean active;
 	
 //targetEntity = Recording.class
 	@JsonIgnore

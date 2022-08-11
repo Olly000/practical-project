@@ -8,19 +8,18 @@ function displaySearchForm() {
     document.getElementById('form-box').setAttribute('src', './search.html');
 }
 
-let searchButton = document.getElementById('search-for');
-searchButton.addEventListener('click', displaySearchForm);
+document.getElementById('search-for').addEventListener('click', displaySearchForm);
 
 
 
-// const addEditForm = () => {
-
-// }
-
-// const addDeleteForm = () => {
+// const displayEditForm = () => {
 
 // }
 
-// const choiceBoxReaction = () => {
+// const displayDeleteForm = () => {
+
+// }
+
+// const displayAddForm = () => {
 
 // }

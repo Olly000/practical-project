@@ -32,6 +32,11 @@ public class BandService {
 		return this.mapper.map(band, BandDTO.class);
 	}
 	
+	public Long idFromName(String bandName) {
+		Band band = repo.findByBandName(bandName);
+		return band.getBandId();
+	}
+	
 	// create
 	public BandDTO addBand(Band band) {
 		return this.mapToDTO(this.repo.save(band));
@@ -68,6 +73,6 @@ public class BandService {
 		}
 		return !exists;
 	}
-	
 
 }
+

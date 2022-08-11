@@ -33,17 +33,13 @@ public class Musician {
 	private Long musicianId;
 	
 	@Column(nullable=false)
-	private String surname;
-	
-	@Column(nullable=false)
-	private String forename;
+	private String fullName;
 	
 	@Column(nullable=false)
 	private String instrument;
 	
-	public Musician(String forename, String surname, String instrument) {
-		this.forename = forename;
-		this.surname = surname;
+	public Musician(String fullName, String instrument) {
+		this.fullName = fullName;
 		this.instrument = instrument;
 	}
 	

@@ -43,7 +43,7 @@ public class MusicianServiceTests {
 	@Test
 	public void testGetOneMusician() throws NotFoundException {
 		Long id = 1L;
-		Optional<Musician> musician = Optional.of(new Musician("Britt", "Walford", "drums"));
+		Optional<Musician> musician = Optional.of(new Musician("Britt Walford", "drums"));
 		
 		Mockito.when(repo.findById(id)).thenReturn(musician);
 		MusicianDTO musicianDTO = new MusicianDTO(musician.get());
@@ -56,16 +56,16 @@ public class MusicianServiceTests {
 	@Test
 	public void testGetAllMusicians() {
 		List<Musician> current = new ArrayList<>();
-		Musician musician1 = new Musician("Britt", "Walford", "drums");
-		Musician musician2 = new Musician("Kim", "Deal", "vocals");
+		Musician musician1 = new Musician("Britt Walford", "drums");
+		Musician musician2 = new Musician("Kim Deal", "vocals");
 		current.add(musician1);
 		current.add(musician2);
 		
 		Mockito.when(repo.findAll()).thenReturn(current);
 		
 		List<MusicianDTO> currentDTO = new ArrayList<>();
-		MusicianDTO musicianDTO1 = new MusicianDTO("Britt", "Walford", "drums");
-		MusicianDTO musicianDTO2 = new MusicianDTO("Kim", "Deal", "vocals");
+		MusicianDTO musicianDTO1 = new MusicianDTO("Britt Walford", "drums");
+		MusicianDTO musicianDTO2 = new MusicianDTO("Kim Deal", "vocals");
 		currentDTO.add(musicianDTO1);
 		currentDTO.add(musicianDTO2);
 		
@@ -76,8 +76,8 @@ public class MusicianServiceTests {
 	
 	@Test
 	public void testUpdateMusician() throws NotFoundException {
-		Musician newMusician = new Musician("Britt", "Walford", "drums");
-		Optional<Musician> storedMusician = Optional.of(new Musician("Doug", "Walford", "drums"));
+		Musician newMusician = new Musician("Britt Walford", "drums");
+		Optional<Musician> storedMusician = Optional.of(new Musician("Doug Walford", "drums"));
 		Long id = 1L;
 		
 		Mockito.when(repo.findById(id)).thenReturn(storedMusician);

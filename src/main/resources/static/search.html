@@ -12,22 +12,23 @@
         <ul>
             <li class="list-item">
                 <select id="entity-choice" name="entity" required>
-                    <option value="Band">Band</option>
-                    <option value="Musician">Musician</option>
-                    <option value="Recording">Recording</option>
+                    <option value="band" selected>Band</option>
+                    <option value="musician">Musician</option>
+                    <option value="recording">Recording</option>
                 </select>
             </li>
             <li class="list-item">
-                <label for="name">Name/Title:  </label><input type="text" name="name" >
+                <label for="name">Name/Title:  </label><input type="text" name="name" id="input-value">
             </li>
             <li class="list-item">
-                <input type="submit" label="submit">
+                <input type="submit" label="submit" onclick="getOne(document.getElementById('input-value').value)">
             </li>
             <li class="list-item">
-                <label for="all">  or  </label><input type="button" class="bttn" value="Show All" id="all">
+                <label for="all">  or  </label><input type="button" class="bttn" value="Show All" id="all" onclick="getAll()">
             </li>
         </ul>
     </fieldset>
+    <section id="response-body"></section>
     <script src="./ppa.js"></script>
     <script src="./searchBox.js"></script>
 </body>

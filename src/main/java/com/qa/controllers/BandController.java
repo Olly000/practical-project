@@ -48,7 +48,8 @@ public class BandController {
 	}
 	
 	@GetMapping("/getOneBand")
-	public BandDTO getOne(@PathParam("id") Long id) throws NotFoundException {
+	public BandDTO getOne(@PathParam("bandName") String bandName) throws NotFoundException {
+		Long id = service.idFromName(bandName);
 		return service.getOneBand(id);
 	}
 	
