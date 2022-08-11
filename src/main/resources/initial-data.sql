@@ -18,8 +18,9 @@ INSERT INTO musicians(full_name, instrument) VALUES
 ('Sam Prekop', 'guitar'),
 ('Kim Deal', 'vocals');
 
-INSERT INTO bandmembers(band_id, musician_id) VALUES
+INSERT INTO plays_in(musician_id, band_id) VALUES
 (1, 1),
+(1, 2),
 (2, 1),
-(2, 2),
-(2, 4);
+(2, 3),
+(3, 2);

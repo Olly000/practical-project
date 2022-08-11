@@ -28,6 +28,10 @@ html, body {
     margin: 2vw;
 }
 
+.li {
+    list-style: none;
+}
+
 .list-item {
     padding: 2vw;
 }
