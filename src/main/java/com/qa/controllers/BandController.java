@@ -59,7 +59,14 @@ public class BandController {
 	}
 	
 	@PostMapping("/deleteBand")
+	public boolean delete(@PathParam("bandName") String bandName) throws NoDeleteException {
+		Long id = service.idFromName(bandName);
+		return service.deleteBand(id);
+	}
+	
+	@PostMapping("/deleteBandById")
 	public boolean delete(@PathParam("id") Long id) throws NoDeleteException {
+		//Long id = service.idFromName(bandName);
 		return service.deleteBand(id);
 	}
 

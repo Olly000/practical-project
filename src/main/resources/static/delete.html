@@ -13,17 +13,40 @@
         <br>
     </header>
     <div class="subtitle">
-        <p>This site lets you find out who played on what recordings - it can be searched by musician,
-            band or recording.  You can also add, edit and remove musicians, bands or recordings from
-            the database.
+        <p>This is the delete page.  Select band, musician or recording from the dropdown and input the name 
+            or title into the text box - lower case for bands and recordings, proper case for names
         </p>
     </div>
     <section class="heading">
-        <h2>What would you like to do?</h2>
+        <h2>Delete an entry from the database</h2>
         <br>
     </section>
-    <!--goes to search/edit/delete pages use radio for entity type.  Don't forget to put a back button
-    on these pages, which will output success message (as alert?) then wait for another input-->
-        <section id="choice-box"> 
-            <input type="button" id="search-for" class="bttn" value="return to menuu" onclick="location.href='./index.html';">
+        <section class="choice-box"> 
+            <input type="button" id="search-for" class="bttn" value="return to menu" onclick="location.href='./index.html';">
         </section>
+        <fieldset name="delete-options" class="options"><legend>Select Entry</legend>
+            <ul>
+                <li class="list-item">
+                    <select id="entity-choice" name="entity" required>
+                        <option value="Band" selected>Band</option>
+                        <option value="Musician">Musician</option>
+                        <option value="Recording">Recording</option>
+                    </select>
+                </li>
+                <li class="list-item">
+                    <label for="name">Name/Title:  </label><input type="text" name="name" id="input-value" required>
+                </li>
+                <li class="list-item">
+                    <input type="button" class="bttn" value="Delete" id="delete-now" onclick="deleteEntity(document.getElementById('input-value').value)">
+                </li>
+                <!-- could replace this with an 'undo' button - store the deleted entity in session storage, this button could
+                then call the add method, allowing it to replace the entity -->
+                <li class="list-item"> 
+                    <input type="button" class="bttn" value="Undo" id="undo">
+                </li>
+            </ul>
+        </fieldset>
+        <script src="./crud.js"></script>
+        <script src="./delete.js"></script>
+    </body>
+</html>

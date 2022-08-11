@@ -4,6 +4,7 @@ package com.qa.persistence;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -54,11 +55,11 @@ public class Band {
 	
 //targetEntity = Recording.class
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "band")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "band", cascade = CascadeType.ALL)
 	private Set<Recording> recordings = new HashSet<>();
 	
 	
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(
 			  name = "bandmembers", 
 			  joinColumns = @JoinColumn(name = "band_id"), 

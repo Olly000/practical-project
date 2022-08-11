@@ -9,7 +9,7 @@ html, body {
     height: 100%;
 }
 
-#choice-box {
+.choice-box {
     display: flex;
     flex-direction: row;
     padding-top: 2vw;

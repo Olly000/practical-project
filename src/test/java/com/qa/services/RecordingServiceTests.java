@@ -1,7 +1,6 @@
 package com.qa.services;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,7 +14,6 @@ import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 
 import com.qa.exceptions.NoDeleteException;
 import com.qa.persistence.Band;
-import com.qa.persistence.Musician;
 import com.qa.persistence.Recording;
 import com.qa.persistence.RecordingDTO;
 import com.qa.repositories.RecordingRepository;
@@ -69,8 +67,8 @@ public class RecordingServiceTests {
 		Mockito.when(repo.findAll()).thenReturn(current);
 		
 		List<RecordingDTO> currentDTO = new ArrayList<>();
-		RecordingDTO recordingDTO1 = new RecordingDTO("University", band1, "4AD", 1990, Collections.<Musician>emptySet());
-		RecordingDTO recordingDTO2 = new RecordingDTO("Young Team", band2, "Chemikal", 1997, Collections.<Musician>emptySet());
+		RecordingDTO recordingDTO1 = new RecordingDTO("University", band1, "4AD", 1990);
+		RecordingDTO recordingDTO2 = new RecordingDTO("Young Team", band2, "Chemikal", 1997);
 		currentDTO.add(recordingDTO1);
 		currentDTO.add(recordingDTO2);
 		
