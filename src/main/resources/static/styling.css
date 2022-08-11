@@ -24,7 +24,7 @@ html, body {
     padding: 1vw;
 }
 
-#options {
+.options {
     margin: 2vw;
 }
 
@@ -98,6 +98,11 @@ thead {
 
 .horizontal--blocker {
     padding-bottom: 6vw;
+    background-color: #5886db;
+}
+
+.small--block {
+    padding-bottom: 3vw;
     background-color: #5886db;
 }
 

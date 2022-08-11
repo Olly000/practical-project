@@ -15,6 +15,22 @@ function buildEndpoint(input, operation) {
 }
 
 // Create Functions
+function createEntity(input) {
+    let endpoint = buildEndpoint(input, 'delete');
+    fetch(endpoint, {
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json"
+        }
+        }).then(response => {
+            response.json().then(body => {
+            document.getElementById('response-body').append(JSON.stringify(body));
+            });    
+        }).catch(error => {console.log(error);
+            alert(`${error.message}`)});
+}
+
+
 
 // Read functions
 function getAll() {
@@ -64,3 +80,7 @@ function deleteEntity(input) {
         }).catch(error => {console.log(error);
             alert(`${error.message}`)});
 }
+
+//event listeners for CRUD pages
+
+
