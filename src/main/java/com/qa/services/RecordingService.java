@@ -39,6 +39,12 @@ public class RecordingService {
 		return recording.getRecordingId();
 	}
 	
+	public void removeBand(Long id) {
+		Recording recording = repo.findById(id).get();
+		recording.setBand(null);
+		repo.save(recording);
+	}
+	
 	// create
 	public RecordingDTO addRecording(Recording recording) {
 		return this.mapToDTO(this.repo.save(recording));

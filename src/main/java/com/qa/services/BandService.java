@@ -52,8 +52,8 @@ public class BandService {
 	}
 	
 	// update
-	public BandDTO updateBand(Long id, Band band) throws NotFoundException {
-		Band existingBand = this.repo.findById(id).orElseThrow(NotFoundException::new);
+	public BandDTO updateBand(Band band) throws NotFoundException {
+		Band existingBand = this.repo.findByBandName(band.getBandName());//.orElseThrow(NotFoundException::new);
 		if(existingBand != null) {
 			existingBand.setBandName(band.getBandName());
 			existingBand.setGenre(band.getGenre());
@@ -72,6 +72,14 @@ public class BandService {
 			throw new NoDeleteException();
 		}
 		return !exists;
+	}
+
+	public void removeMemberAssoc(Long id) {
+		repo.deletePlaysInAssoc(id);
+	}
+	
+	public void deleteDiscog(Long id) {
+		repo.deleteBandDiscog(id);
 	}
 
 }

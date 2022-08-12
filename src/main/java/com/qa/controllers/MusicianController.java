@@ -45,7 +45,7 @@ public class MusicianController {
 	
 	@PostMapping("/updateMusician")
 	public MusicianDTO update(@RequestBody Musician musician) throws NotFoundException {
-		return service.updateMusician(musician.getMusicianId(), musician);
+		return service.updateMusician(musician);
 	}
 	
 	@PostMapping("/deleteMusician")

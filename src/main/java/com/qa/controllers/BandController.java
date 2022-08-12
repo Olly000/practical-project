@@ -55,14 +55,14 @@ public class BandController {
 	
 	@PostMapping("/updateBand")
 	public BandDTO update(@RequestBody Band band) throws NotFoundException {
-		Long id = service.idFromName(band.getBandName());
-		band.setBandId(id);
-		return service.updateBand(band.getBandId(), band);
+		return service.updateBand(band);
 	}
 	
 	@PostMapping("/deleteBand")
 	public boolean delete(@PathParam("bandName") String bandName) throws NoDeleteException {
 		Long id = service.idFromName(bandName);
+		service.removeMemberAssoc(id);
+		service.deleteDiscog(id);
 		return service.deleteBand(id);
 	}
 	
