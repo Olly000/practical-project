@@ -16,56 +16,82 @@ function buildEndpointNoQString(operation, entityType) {
          return `/${operation}${entityType}`;
  }
 
+function prepareBandPostRequest() {
+    let fetchOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    }
 
-function convertFormToData(form) {
-    const formEntries = new FormData(form).entries();
-    const formData = Object.assign(...Array.from(formEntries, ([name, value]) => ({[name]: value})));
-    return formData;
+    let data = {}; 
+    data.bandName = document.getElementById('bandName').value;
+    data.genre = document.getElementById('genre').value;
+    data.yearFormed = document.getElementById('yearFormed').value;
 
+    fetchOptions.body = JSON.stringify(data);
+    return fetchOptions;
 }
 
-// Create Functions
-function createEntity(form, entityType) {
-    let data = convertFormToData(form);
-    let endpoint = buildEndpointNoQString('add', entityType);
-    console.log(data);
-    fetch(endpoint, {
-        method:"POST",
-        headers:{
-            "Content-Type":"application/json"
+function prepareMusicianPostRequest() {
+    let fetchOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
         },
-        body:
-            `${JSON.stringify(data)}`
-        
-        }).then(response => {
+    }
+
+    let data = {};
+    data.fullName = document.getElementById('fullName').value;
+    data.instrument = document.getElementById('instrument').value;
+
+    fetchOptions.body = JSON.stringify(data);
+    return fetchOptions;
+}
+
+function prepareRecordingPostRequest() {
+    let fetchOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    }
+
+    let data = {};
+ 
+    data.title = document.getElementById('title').value;
+    data.band = document.getElementById('recording-band').value;
+    data.label = document.getElementById('label').value;
+    data.releaseYear = document.getElementById('release-year').value;
+
+    fetchOptions.body = JSON.stringify(data);
+    return fetchOptions;
+}
+
+function selectPostEntity(entityType) {
+    if(entityType == 'Band') {
+        return prepareBandPostRequest();
+    }else if(entityType == 'Musician') {
+        return prepareMusicianPostRequest();
+    } else if(entityType == 'Recording') {
+        return prepareRecordingPostRequest();
+    } else {
+        return "error in entity selection";
+    }
+}
+
+// Create/Update Function - note despite its name this function is used send data to both the add and update endpoints
+function createEntity(entityType, operation) {
+    let endpoint = buildEndpointNoQString(operation, entityType);
+    let options = selectPostEntity(entityType);
+    fetch(endpoint, options)
+        .then(response => {
             response.json().then(body => {
-            document.getElementById('add-feedback').append(JSON.stringify(body));
+            document.getElementById('response-body').append(JSON.stringify(body));
             });    
         }).catch(error => {console.log(error);
             alert(`${error.message}`)});
 }
-
-function addBand() {
-    let endpoint = buildEndpointNoQString('add', 'Band');
-    let bandName = document.getElementById('bandName').value;
-    let genre = document.getElementById('genre').value;
-    let yearFormed = document.getElementById('genre').value;
-    let data = `[{"bandName": "${bandName}", "genre": "${genre}", "yearFormed": ${yearFormed}}]`
-    fetch(endpoint, {
-        method:"POST",
-        headers:{
-            "Content-Type":"application/json"
-        },
-        body: `${data}`
-        
-    }).then(response => {
-            response.json().then(body => {
-            document.getElementById('add-feedback').append(JSON.stringify(body));
-            });    
-        }).catch(error => {console.log(error);
-            alert(`${error.message}`)});
-}
-
 
 
 // Read functions
@@ -98,8 +124,6 @@ function getOne(input) {
         }).catch(error => {console.log(error);
             alert(`${error.message}`)});
 }
-
-// Update Functions
 
 // Delete Function
 function deleteEntity(input) {

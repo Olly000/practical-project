@@ -39,7 +39,6 @@ public class BandController {
 	
 	@PostMapping("/addBand")
 	public BandDTO add(@RequestBody Band band) {
-		System.out.println(band);
 		return service.addBand(band);
 	}
 	
@@ -56,9 +55,7 @@ public class BandController {
 	
 	@PostMapping("/updateBand")
 	public BandDTO update(@RequestBody Band band) throws NotFoundException {
-		Long id = service.idFromName(band.getBandName());
-		band.setBandId(id);
-		return service.updateBand(band.getBandId(), band);
+		return service.updateBand(band);
 	}
 	
 	@PostMapping("/deleteBand")

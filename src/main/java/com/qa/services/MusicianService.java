@@ -52,8 +52,8 @@ public class MusicianService {
 	}
 	
 	// update
-	public MusicianDTO updateMusician(Long id, Musician musician) throws NotFoundException {
-		Musician existingMusician = this.repo.findById(id).orElseThrow(NotFoundException::new);
+	public MusicianDTO updateMusician(Musician musician) throws NotFoundException {
+		Musician existingMusician = this.repo.findByName(musician.getFullName());
 		if(existingMusician != null) {
 			existingMusician.setFullName(musician.getFullName());
 			existingMusician.setInstrument(musician.getInstrument());

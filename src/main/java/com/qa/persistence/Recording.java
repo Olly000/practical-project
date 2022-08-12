@@ -1,9 +1,5 @@
 package com.qa.persistence;
 
-
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,12 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -55,11 +47,6 @@ public class Recording {
 	@Column
 	private int releaseYear;
 	
-//	@JoinTable(
-//			  name = "played_on", 
-//			  joinColumns = @JoinColumn(name = "recording_id"), 
-//			  inverseJoinColumns = @JoinColumn(name = "musician_id"))
-//	@ManyToMany
-//  private Set<Musician> players = new HashSet<>();
+
 	
 }
