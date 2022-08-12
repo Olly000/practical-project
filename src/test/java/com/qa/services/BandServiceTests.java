@@ -87,7 +87,7 @@ public class BandServiceTests {
 		
 		BandDTO newBandDTO = service.mapToDTO(newBand);
 		
-		Assertions.assertEquals(newBandDTO, service.updateBand(id, newBand));
+		Assertions.assertEquals(newBandDTO, service.updateBand(newBand));
 		
 		Mockito.verify(this.repo, Mockito.times(1)).findById(id);
 		Mockito.verify(this.repo, Mockito.times(1)).save(newBand);

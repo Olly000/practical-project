@@ -85,7 +85,7 @@ public class MusicianServiceTests {
 		
 		MusicianDTO newMusicianDTO = service.mapToDTO(newMusician);
 		
-		Assertions.assertEquals(newMusicianDTO, service.updateMusician(id, newMusician));
+		Assertions.assertEquals(newMusicianDTO, service.updateMusician(newMusician));
 		
 		Mockito.verify(this.repo, Mockito.times(1)).findById(id);
 		Mockito.verify(this.repo, Mockito.times(1)).save(newMusician);
