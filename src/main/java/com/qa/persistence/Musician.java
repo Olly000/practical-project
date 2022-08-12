@@ -60,7 +60,7 @@ public class Musician {
 	@JoinTable(name = "plays_in", joinColumns=
 	@JoinColumn(name="musician_id"),
 	inverseJoinColumns = @JoinColumn(name = "band_id"))
-	private Set<Band> memberOf = new HashSet<>();
+	private Set<Band> playsIn = new HashSet<>();
 	
 	
 }

@@ -4,23 +4,26 @@ function buildEndpoint(input, operation) {
     console.log(entityType);
     let encode = input.replace(/' '/, '%20');
     if(entityType == 'Band') {
-        return `/${operation}Band?bandName=${encode}`;
+        return `/${operation}Band?bandName=${input}`;
     }else if(entityType == 'Musician') {
-        return `/${operation}Musician?fullName=${encode}`;
+        return `/${operation}Musician?fullName=${input}`;
     } else if(entityType == 'Recording') {
-        return `/${operation}Recording?title=${encode}`;
+        return `/${operation}Recording?title=${input}`;
     } else {
         return "shits not working";
     }
 }
 
 // Create Functions
-function createEntity(input) {
-    let endpoint = buildEndpoint(input, 'delete');
+function createEntity() {
+    let endpoint = buildEndpoint(input, 'add');
     fetch(endpoint, {
         method:"POST",
         headers:{
             "Content-Type":"application/json"
+        },
+        body:{
+        // TODO work out body data
         }
         }).then(response => {
             response.json().then(body => {
@@ -82,5 +85,5 @@ function deleteEntity(input) {
 }
 
 //event listeners for CRUD pages
-
+//let createButton = document.getElementById('submit-band').addEventListener('click', )
 

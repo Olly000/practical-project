@@ -45,7 +45,7 @@ public class Recording {
 	@Column(nullable=false)
 	private String title;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "band_id", referencedColumnName = "band_id")
 	private Band band;
 	

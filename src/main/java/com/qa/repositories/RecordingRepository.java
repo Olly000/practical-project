@@ -14,6 +14,7 @@ public interface RecordingRepository extends JpaRepository<Recording, Long> {
 	@Query(value = "SELECT * FROM recordings WHERE title = ?1", nativeQuery = true)
 	public Recording findByTitle(String title);
 	
+	@Query(value = "SELECT * FROM recordings WHERE label = ?1", nativeQuery = true)
 	public List<Recording> findAllByLabel(String label);
 
 
