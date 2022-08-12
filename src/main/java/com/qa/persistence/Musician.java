@@ -45,7 +45,7 @@ public class Musician {
 		this.instrument = instrument;
 	}
 	
-	//@JsonIgnore
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "recorded", joinColumns=
 	@JoinColumn(name="musician_id"),

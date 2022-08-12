@@ -74,5 +74,13 @@ public class BandService {
 		return !exists;
 	}
 
+	public void removeMemberAssoc(Long id) {
+		repo.deletePlaysInAssoc(id);
+	}
+	
+	public void deleteDiscog(Long id) {
+		repo.deleteBandDiscog(id);
+	}
+
 }
 

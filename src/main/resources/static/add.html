@@ -25,25 +25,25 @@
         </section>
         <section class="horizontal--blocker"></section>
         
-        <form class="options">
-            <label for="band-name">Band Name:  </label><input type="text" name="band-name" id="band-name">
+        <form class="options" id="new-band">
+            <label for="band-name">Band Name:  </label><input type="text" name="bandName" id="bandName">
             <label for="genre">Genre:  </label><input type="text" name="genre" id="genre">
-            <label for="year-formed">Year Formed:  </label><input type="text" name="year-formed" id="year-formed">
-            <input type="button" value="submit new band" id="submit-band">
+            <label for="year-formed">Year Formed:  </label><input type="text" name="yearFormed" id="yearFormed">
+            <input type="button" value="submit new band" id="submit-band" onclick="addBand()">
         </form>
         <div class="small--block"></div>
-        <form class="options">
+        <form class="options" id="new-musician">
             <label for="musician-name">Musician Name:  </label><input type="text" name="band-name" id="musician-name">
             <label for="instrument">Instrument:  </label><input type="text" name="instrument" id="instrument">
-            <input type="button" value="submit new musician" id="submit-musician">
+            <input type="button" value="submit new musician" id="submit-musician" onclick="createEntity(document.getElementById('new-musician'), 'Musician')">
         </form>
         <div class="small--block"></div>
-        <form class="options">
+        <form class="options" id="new-recording">
             <label for="title">Record Title:  </label><input type="text" name="title" id="title">
             <label for="band">Band:  </label><input type="text" name="band" id="recording-band">
             <label for="label">Label:  </label><input type="text" name="label" id="label">
             <label for="release-year">Release Year:  </label><input type="text" name="release-year" id="release-year">
-            <input type="button" class="bttn" value="submit new recording" id="submit-recording">
+            <input type="button" class="bttn" value="submit new recording" id="submit-recording"onclick="createEntity(document.getElementById('new-recording'), 'Recording')">
         </form>
         
         <div class="small--block"></div>

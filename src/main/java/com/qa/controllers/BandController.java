@@ -39,6 +39,7 @@ public class BandController {
 	
 	@PostMapping("/addBand")
 	public BandDTO add(@RequestBody Band band) {
+		System.out.println(band);
 		return service.addBand(band);
 	}
 	
@@ -63,6 +64,8 @@ public class BandController {
 	@PostMapping("/deleteBand")
 	public boolean delete(@PathParam("bandName") String bandName) throws NoDeleteException {
 		Long id = service.idFromName(bandName);
+		service.removeMemberAssoc(id);
+		service.deleteDiscog(id);
 		return service.deleteBand(id);
 	}
 	

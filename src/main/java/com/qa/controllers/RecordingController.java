@@ -57,6 +57,7 @@ public class RecordingController {
 	@PostMapping("/deleteRecording")
 	public boolean delete(@PathParam("title") String title) throws NoDeleteException, NotFoundException {
 		Long id = service.idFromTitle(title);
+		service.removeBand(id); 
 		return service.deleteRecording(id);
 	}
 
