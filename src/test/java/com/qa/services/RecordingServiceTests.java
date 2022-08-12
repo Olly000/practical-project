@@ -56,8 +56,8 @@ public class RecordingServiceTests {
 	
 	@Test
 	public void testGetAllRecordings() {
-		Band band1 = new Band("Throwing Muses", "indie", 1984, true);
-		Band band2 = new Band("Mogwai", "post-rock", 1995, true);
+		Band band1 = new Band("Throwing Muses", "indie", 1984);
+		Band band2 = new Band("Mogwai", "post-rock", 1995);
 		List<Recording> current = new ArrayList<>();
 		Recording recording1 = new Recording("University", band1, "4AD", 1990);
 		Recording recording2 = new Recording("Young Team", band2, "Chemikal", 1997);
@@ -79,7 +79,7 @@ public class RecordingServiceTests {
 	
 	@Test
 	public void testUpdateRecording() throws NotFoundException {
-		Band band = new Band("Mogwai", "post-rock", 1995, true);
+		Band band = new Band("Mogwai", "post-rock", 1995);
 		Recording newRecording = new Recording("Young Team", band, "Chemikal", 1997);
 		Optional<Recording> storedRecording = Optional.of(new Recording("Young Team", band, "Chemikal Underground", 1997));
 		Long id = 1L;

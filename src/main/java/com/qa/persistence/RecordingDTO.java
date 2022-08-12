@@ -19,9 +19,10 @@ public class RecordingDTO {
 
 	public RecordingDTO(Recording recording) {
 		this.title = recording.getTitle();
-		this.band = recording.getBand(); // TODO: Get from name input
+		this.band = recording.getBand(); 
 		this.label = recording.getLabel();
 		this.releaseYear = recording.getReleaseYear();
+		
 	}
 	
 	

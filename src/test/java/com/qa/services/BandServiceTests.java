@@ -16,8 +16,6 @@ import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import com.qa.exceptions.NoDeleteException;
 import com.qa.persistence.Band;
 import com.qa.persistence.BandDTO;
-import com.qa.persistence.Musician;
-import com.qa.persistence.MusicianDTO;
 import com.qa.repositories.BandRepository;
 import com.qa.runner.PracticalProjectApplication;
 
@@ -32,7 +30,7 @@ public class BandServiceTests {
 	
 	@Test
 	public void testCreate() {
-		Band Band = new Band();
+		Band Band = new Band("Throwing Muses", "indie", 1984);
 		
 		Mockito.when(repo.save(Band)).thenReturn(Band);
 		BandDTO BandDTO = new BandDTO(Band);
@@ -46,7 +44,7 @@ public class BandServiceTests {
 	@Test
 	public void testGetOneBand() throws NotFoundException {
 		Long id = 1L;
-		Optional<Band> band = Optional.of(new Band());
+		Optional<Band> band = Optional.of(new Band("Throwing Muses", "indie", 1984));
 		
 		Mockito.when(repo.findById(id)).thenReturn(band);
 		BandDTO bandDTO = new BandDTO(band.get());
@@ -59,16 +57,16 @@ public class BandServiceTests {
 	@Test
 	public void testGetAllBands() {
 		List<Band> current = new ArrayList<>();
-		Band band1 = new Band("Throwing Muses", "indie", 1984, true);
-		Band band2 = new Band("Mogwai", "post-rock", 1995, true);
+		Band band1 = new Band("Throwing Muses", "indie", 1984);
+		Band band2 = new Band("Mogwai", "post-rock", 1995);
 		current.add(band1);
 		current.add(band2);
 		
 		Mockito.when(repo.findAll()).thenReturn(current);
 		
 		List<BandDTO> currentDTO = new ArrayList<>();
-		BandDTO bandDTO1 = new BandDTO("Throwing Muses", "indie", 1984, true);
-		BandDTO bandDTO2 = new BandDTO("Mogwai", "post-rock", 1995, true);
+		BandDTO bandDTO1 = new BandDTO("Throwing Muses", "indie", 1984);
+		BandDTO bandDTO2 = new BandDTO("Mogwai", "post-rock", 1995);
 		currentDTO.add(bandDTO1);
 		currentDTO.add(bandDTO2);
 		
@@ -80,8 +78,8 @@ public class BandServiceTests {
 	
 	@Test
 	public void testUpdateBand() throws NotFoundException {
-		Band newBand = new Band("Throwing Muses", "indie", 1984, true);
-		Optional<Band> storedBand = Optional.of(new Band("Throwing Muses", "indie", 1990, true));
+		Band newBand = new Band("Throwing Muses", "indie", 1984);
+		Optional<Band> storedBand = Optional.of(new Band("Throwing Muses", "indie", 1990));
 		Long id = 1L;
 		
 		Mockito.when(repo.findById(id)).thenReturn(storedBand);

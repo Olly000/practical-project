@@ -15,4 +15,3 @@ INSERT INTO musicians(full_name, instrument) VALUES
 ('John McIntyre', 'drums'),
 ('David Pajo', 'guitar'),
 ('Sam Prekop', 'guitar');
-

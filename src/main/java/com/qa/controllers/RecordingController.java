@@ -34,6 +34,7 @@ public class RecordingController {
 	
 	@PostMapping("/addRecording")
 	public RecordingDTO add(@RequestBody Recording recording) {
+		
 		return service.addRecording(recording);
 	}
 	
@@ -43,7 +44,8 @@ public class RecordingController {
 	}
 	
 	@GetMapping("/getOneRecording")
-	public RecordingDTO getOne(@PathParam("id") Long id) throws NotFoundException {
+	public RecordingDTO getOne(@PathParam("title") String title) throws NotFoundException {
+		Long id = service.idFromTitle(title);
 		return service.getOneRecording(id);
 	}
 	
@@ -53,7 +55,8 @@ public class RecordingController {
 	}
 	
 	@PostMapping("/deleteRecording")
-	public boolean delete(@PathParam("id") Long id) throws NoDeleteException {
+	public boolean delete(@PathParam("title") String title) throws NoDeleteException, NotFoundException {
+		Long id = service.idFromTitle(title);
 		return service.deleteRecording(id);
 	}
 

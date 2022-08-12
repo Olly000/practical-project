@@ -32,6 +32,11 @@ public class MusicianService {
 		return this.mapper.map(musician, MusicianDTO.class);
 	}
 	
+	public Long idFromName(String fullName) throws NotFoundException { // TODO - Ask A about this
+		Musician musician = repo.findByName(fullName);
+		return musician.getMusicianId();
+	}
+	
 	// create
 	public MusicianDTO addMusician(Musician musician) {
 		return this.mapToDTO(this.repo.save(musician));
@@ -50,8 +55,7 @@ public class MusicianService {
 	public MusicianDTO updateMusician(Long id, Musician musician) throws NotFoundException {
 		Musician existingMusician = this.repo.findById(id).orElseThrow(NotFoundException::new);
 		if(existingMusician != null) {
-			existingMusician.setForename(musician.getForename());
-			existingMusician.setSurname(musician.getSurname());
+			existingMusician.setFullName(musician.getFullName());
 			existingMusician.setInstrument(musician.getInstrument());
 		} else {
 			return this.addMusician(musician);
@@ -68,6 +72,5 @@ public class MusicianService {
 		}
 		return !exists;
 	}
-	
 
 }

@@ -10,15 +10,12 @@ import lombok.NoArgsConstructor;
 public class MusicianDTO {
 
 	
-	private String forename;
-	
-	private String surname;
+	private String fullName;
 	
 	private String instrument;
 
 	public MusicianDTO(Musician musician) {
-		this.forename = musician.getForename();
-		this.surname = musician.getSurname();
+		this.fullName = musician.getFullName();
 		this.instrument = musician.getInstrument();
 	}
 

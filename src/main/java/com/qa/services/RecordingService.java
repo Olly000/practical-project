@@ -34,6 +34,11 @@ public class RecordingService {
 		return this.mapper.map(recording, RecordingDTO.class);
 	}
 	
+	public Long idFromTitle(String title) throws NotFoundException { // TODO - Ask A about this
+		Recording recording = repo.findByTitle(title);
+		return recording.getRecordingId();
+	}
+	
 	// create
 	public RecordingDTO addRecording(Recording recording) {
 		return this.mapToDTO(this.repo.save(recording));

@@ -48,16 +48,25 @@ public class BandController {
 	}
 	
 	@GetMapping("/getOneBand")
-	public BandDTO getOne(@PathParam("id") Long id) throws NotFoundException {
+	public BandDTO getOne(@PathParam("bandName") String bandName) throws NotFoundException {
+		Long id = service.idFromName(bandName);
 		return service.getOneBand(id);
 	}
 	
 	@PostMapping("/updateBand")
 	public BandDTO update(@RequestBody Band band) throws NotFoundException {
+		Long id = service.idFromName(band.getBandName());
+		band.setBandId(id);
 		return service.updateBand(band.getBandId(), band);
 	}
 	
 	@PostMapping("/deleteBand")
+	public boolean delete(@PathParam("bandName") String bandName) throws NoDeleteException {
+		Long id = service.idFromName(bandName);
+		return service.deleteBand(id);
+	}
+	
+	@PostMapping("/deleteBandById")
 	public boolean delete(@PathParam("id") Long id) throws NoDeleteException {
 		return service.deleteBand(id);
 	}

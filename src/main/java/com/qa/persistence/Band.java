@@ -4,6 +4,7 @@ package com.qa.persistence;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -30,11 +31,10 @@ import lombok.NoArgsConstructor;
 @Table(name = "bands")
 public class Band {
 	
-	public Band(String bandName, String genre, int yearFormed, boolean active) {
+	public Band(String bandName, String genre, int yearFormed) {
 		this.bandName = bandName;
 		this.genre = genre;
 		this.yearFormed = yearFormed;
-		this.active = active;
 	}
 
 
@@ -53,21 +53,18 @@ public class Band {
 	@Column
 	private int yearFormed;
 	
-	@Column
-	private boolean active;
-	
 //targetEntity = Recording.class
-	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "band")
-	private Set<Recording> recordings = new HashSet<>();
+//	@JsonIgnore
+//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "band", cascade = CascadeType.ALL)
+//	private Set<Recording> recordings = new HashSet<>();
 	
-	
-	@ManyToMany
-	@JoinTable(
-			  name = "bandmembers", 
-			  joinColumns = @JoinColumn(name = "band_id"), 
-			  inverseJoinColumns = @JoinColumn(name = "musician_id"))
-	private Set<Musician> musicians = new HashSet<>();	
+//	@JsonIgnore
+//	@ManyToMany
+//	@JoinTable(
+//			  name = "bandmembers", 
+//			  joinColumns = @JoinColumn(name = "band_id"), 
+//			  inverseJoinColumns = @JoinColumn(name = "musician_id"))
+//	private Set<Musician> musicians = new HashSet<>();	
 
 
 }

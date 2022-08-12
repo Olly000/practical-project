@@ -27,11 +27,6 @@ public class MusicianController {
 		this.service = service;
 	}
 	
-	@GetMapping("/musicians")
-	public String musicianHome() {
-		return "<h1>This is the musician homepage</h1>";
-	}
-	
 	@PostMapping("/addMusician")
 	public MusicianDTO add(@RequestBody Musician musician) {
 		return service.addMusician(musician);
@@ -43,7 +38,8 @@ public class MusicianController {
 	}
 	
 	@GetMapping("/getOneMusician")
-	public MusicianDTO getOne(@PathParam("id") Long id) throws NotFoundException {
+	public MusicianDTO getOne(@PathParam("fullName") String fullName) throws NotFoundException {
+		Long id = service.idFromName(fullName);
 		return service.getOneMusician(id);
 	}
 	
@@ -53,7 +49,8 @@ public class MusicianController {
 	}
 	
 	@PostMapping("/deleteMusician")
-	public boolean delete(@PathParam("id") Long id) throws NoDeleteException {
+	public boolean delete(@PathParam("fullName") String fullName) throws NoDeleteException, NotFoundException {
+		Long id = service.idFromName(fullName);
 		return service.deleteMusician(id);
 	}
 
