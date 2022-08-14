@@ -183,6 +183,5 @@ function deleteEntity(input) {
             alert(`${error.message} not present in database`)});
 }
 
-//event listeners for CRUD pages
 
 

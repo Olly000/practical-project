@@ -1,0 +1,513 @@
+{
+	"info": {
+		"_postman_id": "b9cd7c20-39a5-49c0-a371-fa7fad496cde",
+		"name": "PP-CRUD",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22533350"
+	},
+	"item": [
+		{
+			"name": "add musician",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fullName\": \"Jeff Mangum\",\r\n    \"instrument\": \"vocals\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/addMusician",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"addMusician"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add recording",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"loveless\",\r\n    \"band\": {\"bandId\": 20,\r\n            \"bandName\":\"my bloody valentine\",\r\n            \"genre\": \"shoegaze\",\r\n            \"yearFormed\": 1985},\r\n    \"label\": \"creation\",\r\n    \"releaseYear\": \"1991\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/addRecording",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"addRecording"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add band",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"bandName\": \"belly\",\r\n    \"genre\": \"indie-pop\",\r\n    \"yearFormed\": \"1990\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/addBand",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"addBand"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "read one band",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/getOneBand?bandName=slint",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"getOneBand"
+					],
+					"query": [
+						{
+							"key": "bandName",
+							"value": "slint"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "read one musician",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/getOneMusician?fullName=John McIntyre",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"getOneMusician"
+					],
+					"query": [
+						{
+							"key": "fullName",
+							"value": "John McIntyre"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "read one recording",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/getOneRecording?title=spiderland",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"getOneRecording"
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "spiderland"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "read all recordings",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/getAllRecordings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"getAllRecordings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "read all musicians",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/getAllMusicians",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"getAllMusicians"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "read all bands",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/getAllBands",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"getAllBands"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete musician",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/deleteMusician?fullName=Jeff%20Mangum",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"deleteMusician"
+					],
+					"query": [
+						{
+							"key": "fullName",
+							"value": "Jeff%20Mangum"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete one band",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"bandName\":\"Throwing Muses\",\r\n    \"genre\": \"indie\",\r\n    \"yearFormed\": \"1984\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://www.localhost:8081/deleteBand?bandName=tortoise",
+					"protocol": "http",
+					"host": [
+						"www",
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"deleteBand"
+					],
+					"query": [
+						{
+							"key": "bandName",
+							"value": "tortoise"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete one recording",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/deleteRecording?title=the unstable molecule",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"deleteRecording"
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "the unstable molecule"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update band",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"bandName\": \"tortoise\",\r\n        \"genre\": \"electronic\",\r\n        \"yearFormed\": 1990\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/updateBand",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"updateBand"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update musician",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fullName\": \"John McIntyre\",\r\n    \"instrument\": \"synth\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/updateMusician",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"updateMusician"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update band",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"bandName\": \"belly\",\r\n    \"genre\": \"indie-pop\",\r\n    \"yearFormed\": \"1990\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/updateBand",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"updateBand"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update band (not in db)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"bandName\": \"cluster\",\r\n        \"genre\": \"electronic\",\r\n        \"yearFormed\": 1970\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/updateBand",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"updateBand"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
