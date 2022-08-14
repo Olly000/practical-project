@@ -1,5 +1,8 @@
 package com.qa.selenium;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Assert;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -50,8 +53,8 @@ public class Selenium {
 	}
 	
 	@Test
-	public void editPageTest() {
-		driver.get("http://localhost:8081/edit.html");
+	public void updatePageTest() {
+		driver.get("http://localhost:8081/update.html");
 		Assert.assertEquals("Update Page", driver.getTitle());
 	}
 	
@@ -61,22 +64,28 @@ public class Selenium {
 		Assert.assertEquals("Delete Page", driver.getTitle());
 	}
 	
-	//functional tests
+	// navigation test
 	@Test
-	  public void showallmusicians() {
+	  public void menubutton() {
 	    driver.get("http://localhost:8081/index.html");
-	    driver.manage().window().setSize(new Dimension(1093, 899));
+	    driver.manage().window().setSize(new Dimension(901, 971));
 	    driver.findElement(By.id("search-for")).click();
-	    driver.findElement(By.id("entity-choice")).click();
-	    {
-	      WebElement dropdown = driver.findElement(By.id("entity-choice"));
-	      dropdown.findElement(By.xpath("//option[. = 'Musician']")).click();
-	    }
-	    driver.findElement(By.id("all")).click();
+	    driver.findElement(By.id("menu-return")).click();
+	    assertEquals(driver.getTitle(), "Musiconnect");
+	    driver.findElement(By.id("add-item")).click();
+	    driver.findElement(By.id("menu-return")).click();
+	    assertEquals(driver.getTitle(), "Musiconnect");
+	    driver.findElement(By.id("update-item")).click();
+	    driver.findElement(By.id("menu-return")).click();
+	    assertEquals(driver.getTitle(), "Musiconnect");
+	    driver.findElement(By.id("delete-item")).click();
+	    driver.findElement(By.id("menu-return")).click();
+	    assertEquals(driver.getTitle(), "Musiconnect");
 	  }
 	
+	//functional tests
 	@Test
-	  public void showallrecordings() {
+	  public void showallrecordingsTest() {
 	    driver.get("http://localhost:8081/index.html");
 	    driver.manage().window().setSize(new Dimension(1093, 899));
 	    driver.findElement(By.id("search-for")).click();
@@ -86,10 +95,15 @@ public class Selenium {
 	      dropdown.findElement(By.xpath("//option[. = 'Recording']")).click();
 	    }
 	    driver.findElement(By.id("all")).click();
+	    {
+	      String value = driver.findElement(By.id("entity-choice")).getAttribute("value");
+	      assertEquals(value, "Recording");
+	    }
 	  }
 	
-	 @Test
-	  public void showonemusician() {
+	
+	@Test
+	  public void showonemusicianTest() {
 	    driver.get("http://localhost:8081/index.html");
 	    driver.manage().window().setSize(new Dimension(1093, 899));
 	    driver.findElement(By.id("search-for")).click();
@@ -98,48 +112,93 @@ public class Selenium {
 	      WebElement dropdown = driver.findElement(By.id("entity-choice"));
 	      dropdown.findElement(By.xpath("//option[. = 'Musician']")).click();
 	    }
+	    {
+	      String value = driver.findElement(By.id("entity-choice")).getAttribute("value");
+	      assertEquals(value, "Musician");
+	    }
 	    driver.findElement(By.id("input-value")).click();
+	    {
+	      WebElement element = driver.findElement(By.id("input-value"));
+	      Boolean isEditable = element.isEnabled() && element.getAttribute("readonly") == null;
+	      assertTrue(isEditable);
+	    }
 	    driver.findElement(By.id("input-value")).sendKeys("Sam Prekop");
+	    {
+	      String value = driver.findElement(By.id("input-value")).getAttribute("value");
+	      assertEquals(value, "Sam Prekop");
+	    }
 	    driver.findElement(By.cssSelector(".list-item:nth-child(3) > input")).click();
 	  }
 	 
-	 @Test
-	  public void testshowallbands() {
-	    driver.get("http://localhost:8081/index.html");
-	    driver.manage().window().setSize(new Dimension(1093, 899));
-	    driver.findElement(By.id("search-for")).click();
-	    {
-		      WebElement dropdown = driver.findElement(By.id("entity-choice"));
-		      dropdown.findElement(By.xpath("//option[. = 'Band']")).click();
-		    }
-	    driver.findElement(By.id("all")).click();
-	  }
 	 
 	 @Test
-	  public void addoneband() {
+	  public void addbandTest() {
 	    driver.get("http://localhost:8081/index.html");
-	    driver.manage().window().setSize(new Dimension(1093, 899));
+	    driver.manage().window().setSize(new Dimension(943, 901));
 	    driver.findElement(By.id("add-item")).click();
 	    driver.findElement(By.id("bandName")).click();
+	    {
+	      WebElement element = driver.findElement(By.id("bandName"));
+	      Boolean isEditable = element.isEnabled() && element.getAttribute("readonly") == null;
+	      assertTrue(isEditable);
+	    }
 	    driver.findElement(By.id("bandName")).sendKeys("fuzz");
+	    {
+	      String value = driver.findElement(By.id("bandName")).getAttribute("value");
+	      assertEquals(value, "fuzz");
+	    }
+	    driver.findElement(By.id("genre")).click();
+	    {
+	      WebElement element = driver.findElement(By.id("genre"));
+	      Boolean isEditable = element.isEnabled() && element.getAttribute("readonly") == null;
+	      assertTrue(isEditable);
+	    }
 	    driver.findElement(By.id("genre")).sendKeys("psych");
+	    {
+	      String value = driver.findElement(By.id("genre")).getAttribute("value");
+	      assertEquals(value, "psych");
+	    }
+	    driver.findElement(By.id("yearFormed")).click();
+	    {
+	      WebElement element = driver.findElement(By.id("yearFormed"));
+	      Boolean isEditable = element.isEnabled() && element.getAttribute("readonly") == null;
+	      assertTrue(isEditable);
+	    }
 	    driver.findElement(By.id("yearFormed")).sendKeys("2016");
+	    {
+	      String value = driver.findElement(By.id("yearFormed")).getAttribute("value");
+	      assertEquals(value, "2016");
+	    }
 	    driver.findElement(By.id("submit-band")).click();
 	  }
 	 
 	 @Test
-	  public void updatemusician() {
+	  public void updatemusicianTest() {
 	    driver.get("http://localhost:8081/index.html");
 	    driver.manage().window().setSize(new Dimension(1093, 899));
-	    driver.findElement(By.id("edit-item")).click();
+	    driver.findElement(By.id("update-item")).click();
 	    driver.findElement(By.id("fullName")).click();
+	    {
+	      WebElement element = driver.findElement(By.id("fullName"));
+	      Boolean isEditable = element.isEnabled() && element.getAttribute("readonly") == null;
+	      assertTrue(isEditable);
+	    }
 	    driver.findElement(By.id("fullName")).sendKeys("David Pajo");
+	    {
+	      String value = driver.findElement(By.id("fullName")).getAttribute("value");
+	      assertEquals(value, "David Pajo");
+	    }
+	    driver.findElement(By.id("instrument")).click();
 	    driver.findElement(By.id("instrument")).sendKeys("bass");
+	    {
+	      String value = driver.findElement(By.id("instrument")).getAttribute("value");
+	      assertEquals(value, "bass");
+	    }
 	    driver.findElement(By.id("update-musician")).click();
 	  }
 	 
 	 @Test
-	  public void deleterecording() {
+	  public void deleterecordingTest() {
 	    driver.get("http://localhost:8081/index.html");
 	    driver.manage().window().setSize(new Dimension(1093, 899));
 	    driver.findElement(By.id("delete-item")).click();
@@ -148,8 +207,21 @@ public class Selenium {
 	      WebElement dropdown = driver.findElement(By.id("entity-choice"));
 	      dropdown.findElement(By.xpath("//option[. = 'Recording']")).click();
 	    }
+	    {
+	      String value = driver.findElement(By.id("entity-choice")).getAttribute("value");
+	      assertEquals(value, "Recording");
+	    }
 	    driver.findElement(By.id("input-value")).click();
+	    {
+	      WebElement element = driver.findElement(By.id("input-value"));
+	      Boolean isEditable = element.isEnabled() && element.getAttribute("readonly") == null;
+	      assertTrue(isEditable);
+	    }
 	    driver.findElement(By.id("input-value")).sendKeys("one bedroom");
+	    {
+	      String value = driver.findElement(By.id("input-value")).getAttribute("value");
+	      assertEquals(value, "one bedroom");
+	    }
 	    driver.findElement(By.id("delete-now")).click();
 	  }
 	 

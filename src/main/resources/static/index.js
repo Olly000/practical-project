@@ -8,8 +8,8 @@ function displayAddPage() {
     window.location.assign("./add.html");
  }
 
- function displayEditPage() {
-    window.location.assign("./edit.html");
+ function displayUpdatePage() {
+    window.location.assign("./update.html");
  }
 
  function displayDeletePage() {
@@ -18,18 +18,5 @@ function displayAddPage() {
 
 let searchButton = document.getElementById('search-for').addEventListener('click', displaySearchPage);
 let addButton = document.getElementById('add-item').addEventListener('click', displayAddPage);
-let editButton = document.getElementById('edit-item').addEventListener('click', displayEditPage);
+let editButton = document.getElementById('update-item').addEventListener('click', displayUpdatePage);
 let deleteButton = document.getElementById('delete-item').addEventListener('click', displayDeletePage);
-
-
-// const displayEditForm = () => {
-
-// }
-
-// const displayDeleteForm = () => {
-
-// }
-
-// const displayAddForm = () => {
-
-// }
