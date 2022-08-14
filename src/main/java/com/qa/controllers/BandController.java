@@ -37,6 +37,12 @@ public class BandController {
 		return "<h2> It ain't working chief<h2>";
 	}
 	
+	// used when updating/creating recordings - allows returns Band rather than BandDTO as id is required in this situation
+	@PostMapping("/checkBand")
+	public Band checkBandExists(@PathParam("bandName") String bandName) {
+		return service.checkBandName(bandName);
+	}
+	
 	@PostMapping("/addBand")
 	public BandDTO add(@RequestBody Band band) {
 		return service.addBand(band);

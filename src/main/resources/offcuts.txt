@@ -9,4 +9,20 @@ From recording.java:
     
 from musician.java:
 
+from band.java:
+
+//targetEntity = Recording.class
+//	@JsonIgnore
+//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "band", cascade = CascadeType.ALL)
+//	private Set<Recording> recordings = new HashSet<>();
 	
+//	@JsonIgnore
+//	@ManyToMany
+//	@JoinTable(
+//			  name = "bandmembers", 
+//			  joinColumns = @JoinColumn(name = "band_id"), 
+//			  inverseJoinColumns = @JoinColumn(name = "musician_id"))
+//	private Set<Musician> musicians = new HashSet<>();	
+
+
+}
