@@ -25,16 +25,14 @@ public class RecordingService {
 	
 	private BandRepository bandRepo;
 	
-	private BandService bandService;
 	
 	private ModelMapper mapper;
 
-	public RecordingService(RecordingRepository repo, ModelMapper mapper, BandRepository bandRepo, BandService bandService) {
+	public RecordingService(RecordingRepository repo, ModelMapper mapper, BandRepository bandRepo) {
 		super();
 		this.repo = repo;
 		this.mapper = mapper;
 		this.bandRepo = bandRepo;
-		this.bandService = bandService;
 	}
 	
 	// convert recording entity to recordingDTO class
@@ -57,7 +55,6 @@ public class RecordingService {
 	
 	// create
 	public RecordingDTO addRecording(Recording recording) {
-		System.out.println(recording);
 		if(recording.getBand().getBandId() == 0) {
 			Band newBand = new Band(null, recording.getBand().getBandName(), recording.getBand().getGenre(), recording.getBand().getYearFormed());
 			bandRepo.save(newBand);
