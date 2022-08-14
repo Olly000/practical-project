@@ -21,7 +21,7 @@
         <br>
     </section>
         <section class="choice-box"> 
-            <input type="button" id="menu-return" class="bttn" value="return to menu" onclick="location.href='./index.html';">
+            <input type="button" id="menu-return" class="bttn" value="return to menu" onclick="location.href='./index.html'">
         </section>
         <section class="horizontal--blocker"></section>
         
@@ -43,7 +43,7 @@
             <label for="band">Band:  </label><input type="text" name="recording-band" id="recording-band">
             <label for="label">Label:  </label><input type="text" name="label" id="label">
             <label for="release-year">Release Year:  </label><input type="text" name="release-year" id="release-year">
-            <input type="button" class="bttn" value="submit new recording" id="submit-recording"onclick="createEntity('Recording', 'add')">
+            <input type="button" class="bttn" value="submit new recording" id="submit-recording"onclick="createOrUpdateRecording('add')">
         </form>
         
         <div class="small--block"></div>

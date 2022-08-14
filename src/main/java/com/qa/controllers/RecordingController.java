@@ -51,7 +51,7 @@ public class RecordingController {
 	
 	@PostMapping("/updateRecording")
 	public RecordingDTO update(@RequestBody Recording recording) throws NotFoundException {
-		return service.updateRecording(recording.getRecordingId(), recording);
+		return service.updateRecording(recording);
 	}
 	
 	@PostMapping("/deleteRecording")

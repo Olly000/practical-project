@@ -20,6 +20,7 @@ public class BandService {
 	private BandRepository repo;
 	
 	private ModelMapper mapper;
+	
 
 	public BandService(BandRepository repo, ModelMapper mapper) {
 		super();
@@ -27,7 +28,7 @@ public class BandService {
 		this.mapper = mapper;
 	}
 	
-	// convert Band entity to BandDTO class
+	// utility methods
 	public BandDTO mapToDTO(Band band) {
 		return this.mapper.map(band, BandDTO.class);
 	}
@@ -35,6 +36,16 @@ public class BandService {
 	public Long idFromName(String bandName) {
 		Band band = repo.findByBandName(bandName);
 		return band.getBandId();
+	}
+	
+	public Band checkBandName(String bandName) {
+		Band bandCheck = repo.findByBandName(bandName);
+		System.out.println(bandCheck);
+		if (bandCheck != null) {
+			return bandCheck;
+		}
+		return new Band(0L, bandName, "tba", 0);
+		
 	}
 	
 	// create
@@ -53,7 +64,7 @@ public class BandService {
 	
 	// update
 	public BandDTO updateBand(Band band) throws NotFoundException {
-		Band existingBand = this.repo.findByBandName(band.getBandName());//.orElseThrow(NotFoundException::new);
+		Band existingBand = this.repo.findByBandName(band.getBandName());
 		if(existingBand != null) {
 			existingBand.setBandName(band.getBandName());
 			existingBand.setGenre(band.getGenre());

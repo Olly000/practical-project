@@ -16,6 +16,24 @@ function buildEndpointNoQString(operation, entityType) {
          return `/${operation}${entityType}`;
  }
 
+ function getBandEntity() {
+    let bandName = document.getElementById('recording-band').value;
+    
+    fetch(`/checkBand?bandName=${bandName}`, {
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json"
+        }
+    }).then(response => {
+        response.json().then(body => {
+            console.log(body, "still valid here?");
+        }).then(body => {return body})   
+    }).catch(error => {console.log(error);
+        alert(`${error.message}`)});
+}
+       
+ 
+
 function prepareBandPostRequest() {
     let fetchOptions = {
         method: "POST",
@@ -23,7 +41,6 @@ function prepareBandPostRequest() {
             "Content-Type": "application/json",
         },
     }
-
     let data = {}; 
     data.bandName = document.getElementById('bandName').value;
     data.genre = document.getElementById('genre').value;
@@ -49,7 +66,7 @@ function prepareMusicianPostRequest() {
     return fetchOptions;
 }
 
-function prepareRecordingPostRequest() {
+function prepareRecordingPostRequest(fullBand) {
     let fetchOptions = {
         method: "POST",
         headers: {
@@ -57,10 +74,9 @@ function prepareRecordingPostRequest() {
         },
     }
 
-    let data = {};
- 
+    let data = {}; 
     data.title = document.getElementById('title').value;
-    data.band = document.getElementById('recording-band').value;
+    data.band = fullBand;
     data.label = document.getElementById('label').value;
     data.releaseYear = document.getElementById('release-year').value;
 
@@ -74,16 +90,17 @@ function selectPostEntity(entityType) {
     }else if(entityType == 'Musician') {
         return prepareMusicianPostRequest();
     } else if(entityType == 'Recording') {
-        return prepareRecordingPostRequest();
+        return prepareRecordingPostRequest(document.getElementById('recording-band'));
     } else {
         return "error in entity selection";
     }
 }
 
-// Create/Update Function - note despite its name this function is used send data to both the add and update endpoints
+// Create/Update Function - note despite its name this function is used to send data to both the add and update endpoints
 function createEntity(entityType, operation) {
     let endpoint = buildEndpointNoQString(operation, entityType);
     let options = selectPostEntity(entityType);
+    console.log(options.band);
     fetch(endpoint, options)
         .then(response => {
             response.json().then(body => {
@@ -92,6 +109,31 @@ function createEntity(entityType, operation) {
         }).catch(error => {console.log(error);
             alert(`${error.message}`)});
 }
+
+// Recording needs its own create/update due the fact that it has a band entity
+// as one of its properties, this requires additional processing
+function createOrUpdateRecording(operation) {
+    let endPoint = `/${operation}Recording`
+    let bandName = document.getElementById('recording-band').value;
+    fetch(`/checkBand?bandName=${bandName}`, {
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json"
+        }
+    }).then(response => response.json().then(body => 
+        fetch(endPoint, prepareRecordingPostRequest(body))
+        .then(response => {
+            response.json().then(body => {
+            document.getElementById('response-body').append(`recording ${operation} successful for ${JSON.stringify(body)}<br>`);
+            });    
+        }).catch(error => {console.log(error);
+            alert(`${error.message}`)})
+    ))
+    .catch(error => {console.log(error);
+         alert(`${error.message}`)});
+         
+}
+
 
 
 // Read functions
@@ -122,7 +164,7 @@ function getOne(input) {
             document.getElementById('response-body').append(JSON.stringify(body));
             });    
         }).catch(error => {console.log(error);
-            alert(`${error.message}`)});
+            alert(`Not present in database ${error.message}`)});
 }
 
 // Delete Function
@@ -135,10 +177,10 @@ function deleteEntity(input) {
         }
         }).then(response => {
             response.json().then(body => {
-            document.getElementById('response-body').append(JSON.stringify(body));
+            document.getElementById('response-body').append(JSON.stringify(body), `${input} has been deleted from the database`);
             });    
         }).catch(error => {console.log(error);
-            alert(`${error.message}`)});
+            alert(`${error.message} not present in database`)});
 }
 
 //event listeners for CRUD pages

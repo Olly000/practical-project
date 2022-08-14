@@ -89,7 +89,7 @@ public class RecordingServiceTests {
 		
 		RecordingDTO newRecordingDTO = service.mapToDTO(newRecording);
 		
-		Assertions.assertEquals(newRecordingDTO, service.updateRecording(id, newRecording));
+		Assertions.assertEquals(newRecordingDTO, service.updateRecording(newRecording));
 		
 		Mockito.verify(this.repo, Mockito.times(1)).findById(id);
 		Mockito.verify(this.repo, Mockito.times(1)).save(newRecording);
