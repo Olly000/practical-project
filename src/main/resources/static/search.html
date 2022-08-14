@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styling.css">
+    <title>Search Page</title>
+</head>
+<body>
+    <header class="heading">
+        <h1> Welcome to Musiconnect</h1>
+        <br>
+    </header>
+    <div class="subtitle">
+        <p>This page lets you search the database for specific items, 
+            or see all in database by hitting show all once you have chosen a search type.
+            Bands and recordings are all in lower case, names in Proper Case.
+        </p>
+    </div>
+    <section class="heading">
+        <h2>Search for bands, musicians or recordings, </h2>
+        <br>
+    </section>
+    <!--goes to search/edit/delete pages use radio for entity type.  Don't forget to put a back button
+    on these pages, which will output success message (as alert?) then wait for another input-->
+        <section class="choice-box"> 
+            <input type="button" id="menu-return" class="bttn" value="return to menu" onclick="location.href='./index.html';">
+        </section>
+    <fieldset name="search-options" class="options"><legend>Search Database</legend>
+        <ul>
+            <li class="list-item">
+                <select id="entity-choice" name="entity" required>
+                    <option value="Band" selected>Band</option>
+                    <option value="Musician">Musician</option>
+                    <option value="Recording">Recording</option>
+                </select>
+            </li>
+            <li class="list-item">
+                <label for="name">Name/Title:  </label><input type="text" name="name" id="input-value">
+            </li>
+            <li class="list-item">
+                <input type="submit" label="submit" onclick="getOne(document.getElementById('input-value').value)">
+            </li>
+            <li class="list-item">
+                <label for="all">  or  </label><input type="button" class="bttn" value="Show All" id="all" onclick="getAll()">
+            </li>
+        </ul>
+    </fieldset>
+    <section class="horizontal--blocker"></section>
+    <section id="response-body"></section>
+    <script src="./crud.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styling.css">
+    <title>Add Page</title>
+</head>
+<body>
+    <header class="heading">
+        <h1> Welcome to Musiconnect</h1>
+        <br>
+    </header>
+    <div class="subtitle">
+        <p> Add a band, musician or recording to the database
+        </p>
+    </div>
+    <section class="heading">
+        <h2>Add something to the database</h2>
+        <br>
+    </section>
+        <section class="choice-box"> 
+            <input type="button" id="menu-return" class="bttn" value="return to menu" onclick="location.href='./index.html'">
+        </section>
+        <section class="horizontal--blocker"></section>
+        
+        <form class="options" id="new-band">
+            <label for="band-name">Band Name:  </label><input type="text" name="bandName" id="bandName">
+            <label for="genre">Genre:  </label><input type="text" name="genre" id="genre">
+            <label for="year-formed">Year Formed:  </label><input type="text" name="yearFormed" id="yearFormed">
+            <input type="button" value="submit new band" id="submit-band" onclick="createEntity('Band', 'add')">
+        </form>
+        <div class="small--block"></div>
+        <form class="options" id="new-musician">
+            <label for="musician-name">Musician Name:  </label><input type="text" name="fullName" id="fullName">
+            <label for="instrument">Instrument:  </label><input type="text" name="instrument" id="instrument">
+            <input type="button" value="submit new musician" id="submit-musician" onclick="createEntity('Musician', 'add')">
+        </form>
+        <div class="small--block"></div>
+        <form class="options" id="new-recording">
+            <label for="title">Record Title:  </label><input type="text" name="title" id="title">
+            <label for="band">Band:  </label><input type="text" name="recording-band" id="recording-band">
+            <label for="label">Label:  </label><input type="text" name="label" id="label">
+            <label for="release-year">Release Year:  </label><input type="text" name="release-year" id="release-year">
+            <input type="button" class="bttn" value="submit new recording" id="submit-recording"onclick="createOrUpdateRecording('add')">
+        </form>
+        
+        <div class="small--block"></div>
+        <div id="response-body">
+
+
+        </div>
+        <script src = ./crud.js></script>
+        </body>
+        </html>
